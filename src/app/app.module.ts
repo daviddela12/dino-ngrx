@@ -6,6 +6,8 @@ import { AppComponent } from './components/app.component';
 import { StoreModule } from '@ngrx/store';
 import { HeaderComponent } from './components/header/header.component';
 import {AppReducers} from "./app.state";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import {AppReducers} from "./app.state";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(AppReducers)
+    StoreModule.forRoot(AppReducers),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
