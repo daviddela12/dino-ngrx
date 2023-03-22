@@ -1,12 +1,12 @@
 import {ActionReducerMap} from "@ngrx/store";
 import {ItemState} from "./components/item/item.state";
-import {loadItemsReducer} from "./components/item/item.reducers";
+import {itemReducer} from "./components/item/item.reducers";
 
 // Fuente de la verdad
 export interface AppState {
-  itemsState: ItemState
+  itemState: ItemState
 }
-// Es como la base de datos
+// Es como la base de datos en lo que se refiere a las tablas, relaciones etc.
 export const AppReducers: ActionReducerMap<AppState> = {
-  itemsState: loadItemsReducer
+  itemState: itemReducer
 }

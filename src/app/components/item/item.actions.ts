@@ -1,7 +1,7 @@
 import {createActionGroup, emptyProps, props} from "@ngrx/store";
 import {Item} from "./item.model";
 
-/**
+/** Otra manera sin agruparlos
 export const loadItems = createAction(
   '[Item Component] Load items' //TODO type*
 );

@@ -8,7 +8,7 @@ export const initialState: ItemState = {
   items: []
 }
 
-export const loadItemsReducer = createReducer(
+export const itemReducer = createReducer(
   initialState,
   on(ItemActions.loadItems, (state) => ({
     ...state,

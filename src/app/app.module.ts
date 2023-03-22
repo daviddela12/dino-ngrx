@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
 import { StoreModule } from '@ngrx/store';
 import { HeaderComponent } from './components/header/header.component';
-import {AppReducers} from "./app.state";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {HttpClientModule} from "@angular/common/http";
+import {AppReducers} from "./app.state";
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(AppReducers),
+    // StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],

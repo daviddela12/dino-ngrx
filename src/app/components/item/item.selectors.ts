@@ -1,16 +1,16 @@
-import {AppState} from "../../app.state";
-import {createSelector} from "@ngrx/store";
+import {createFeatureSelector, createSelector} from "@ngrx/store";
+import {ItemState} from "./item.state";
 
-// TODO HACER SELECTORS CON CreateFeatureSelector<fromProyects.ProjectState> instead of the next one
-export const itemsStateSelector = (state: AppState) => state.itemsState;
+export const itemStateSelector = createFeatureSelector<ItemState>("itemState")
+// export const itemsStateSelector = (state: AppState) => state.itemsState;
 
 export const itemsSelector = createSelector(
-  itemsStateSelector,
+  itemStateSelector,
   (state) => state.items
 );
 
 export const loadingItemsSelector = createSelector(
-  itemsStateSelector,
+  itemStateSelector,
   (state) => state.loading
 );
 
