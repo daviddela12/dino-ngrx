@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {ItemActions} from "./item/item.actions";
 import {Item} from "./item/item.model";
+import {DinoService} from "../services/dino.service";
 
 @Component({
   selector: 'app-root',
@@ -20,10 +21,17 @@ export class AppComponent implements OnInit {
       name: "raul"
     }
   ]
-  constructor(private store: Store) {
+  dinos: any;
+
+  constructor(private store: Store, private dinoService: DinoService) {
   }
+
   ngOnInit() {
     this.store.dispatch(ItemActions.loadItems());
-    this.store.dispatch(ItemActions.loadItemsSuccess({items: this.items}));
+    this.dinoService.getDinos().subscribe((response) => {
+      this.dinos = response;
+      this.store.dispatch(ItemActions.loadItemsSuccess({items: this.items}));
+      console.log(this.dinos);
+    })
   }
 }
