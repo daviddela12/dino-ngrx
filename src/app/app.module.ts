@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
 import { StoreModule } from '@ngrx/store';
 import { HeaderComponent } from './components/header/header.component';
+import {AppReducers} from "./app.state";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot(AppReducers)
   ],
   providers: [],
   bootstrap: [AppComponent]

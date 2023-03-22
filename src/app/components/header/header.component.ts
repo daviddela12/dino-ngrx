@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import {loadingItemsSelector} from "../item/item.selectors";
+import {AppState} from "../../app.state";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit{
+  loading$: Observable<boolean> = new Observable<boolean>();
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.loading$ = this.store.select(loadingItemsSelector);
   }
-
 }
