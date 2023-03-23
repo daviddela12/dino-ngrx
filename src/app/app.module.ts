@@ -10,11 +10,13 @@ import { environment } from '../environments/environment';
 import {HttpClientModule} from "@angular/common/http";
 import {AppEffects, AppReducers} from "./app.state";
 import { EffectsModule } from '@ngrx/effects';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

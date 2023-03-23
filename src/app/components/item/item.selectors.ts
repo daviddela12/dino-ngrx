@@ -14,5 +14,8 @@ const loadingItemsSelector = createSelector(
   (state) => state.loading
 );
 
-
-export const ItemSelectors = {itemStateSelector, itemsSelector, loadingItemsSelector}
+export const ItemSelectors = {
+  itemStateSelector,
+  itemsSelector,
+  loadingItemsSelector
+}
