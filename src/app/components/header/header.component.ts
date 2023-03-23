@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {select, Store} from "@ngrx/store";
-import {loadingItemsSelector} from "../item/item.selectors";
+import {ItemSelectors} from "../item/item.selectors";
 import {AppState} from "../../app.state";
 
 @Component({
@@ -15,6 +15,6 @@ export class HeaderComponent implements OnInit{
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.loading$ = this.store.pipe(select(loadingItemsSelector));
+    this.loading$ = this.store.pipe(select(ItemSelectors.loadingItemsSelector));
   }
 }

@@ -8,6 +8,7 @@ export const initialState: ItemState = {
   items: []
 }
 
+// TODO CREATE WITH createFeature
 export const itemReducer = createReducer(
   initialState,
   on(ItemActions.loadItems, (state) => ({
