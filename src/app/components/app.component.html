@@ -1,3 +1,6 @@
 <app-header></app-header>
+<app-alert></app-alert>
 <router-outlet></router-outlet>
-{{dinos$ | async | json}}
+Primera manera, sin Feature: {{(dinos$ | async | json)?.length}}
+<br>
+Segunda manera, con Feature: {{(dinos2$ | async | json)}}

@@ -10,18 +10,20 @@ import { environment } from '../environments/environment';
 import {HttpClientModule} from "@angular/common/http";
 import {AppEffects, AppReducers} from "./app.state";
 import { EffectsModule } from '@ngrx/effects';
-import { NotificationComponent } from './components/notification/notification.component';
+import { AlertComponent } from './components/alert/alert.component';
+import {Item2Module} from "./components/item2/item2.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NotificationComponent
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    Item2Module,
     StoreModule.forRoot(AppReducers),
     // StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

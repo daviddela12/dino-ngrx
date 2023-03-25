@@ -2,8 +2,7 @@ import {Injectable} from "@angular/core";
 import {DinoService} from "../../services/dino.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {ItemActions} from "./item.actions";
-import {catchError, exhaustMap, map, switchMap} from "rxjs/operators";
-import {EMPTY} from "rxjs";
+import { exhaustMap, switchMap} from "rxjs/operators";
 
 @Injectable()
 export class ItemEffects {
@@ -12,6 +11,7 @@ export class ItemEffects {
     private dinoService: DinoService
   ) { }
 
+  /** PRIMERA FORMA
   itemEffects$ = createEffect(() => this.actions$
     .pipe(
       ofType(ItemActions.loadItems),
@@ -20,6 +20,19 @@ export class ItemEffects {
           map(dinos => ItemActions.loadItemsSuccess({items: dinos})),
           catchError(() => EMPTY)
         )
+      )
+    )
+  );
+   **/
+
+  itemEffects$ = createEffect(() => this.actions$
+    .pipe(
+      ofType(ItemActions.loadItems),
+      exhaustMap(() => this.dinoService.getDinos()),
+      switchMap(dinos =>
+        [ItemActions.loadItemsSuccess({items: dinos})]
+        // TODO AÑADIR UNA LLAMADA DENTRO DEL ARRAY
+        //  A NOTICIACION DICIENDO QUE HA HABIDO UN CAMBIO
       )
     )
   );
