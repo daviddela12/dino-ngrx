@@ -1,3 +1,28 @@
-<p>header works!</p>
-<p>Cargando loading... {{loading$ | async | json}}</p>
-<p>Cargando loading2... {{loading2$ | async | json}}</p>
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+    <a #navBurger (click)="toggleNavbar()" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div #navMenu id="mainNavbar" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Notification Page
+      </a>
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <a href="javascript:void(0);">
+          <span class="icon">
+            <i class="fas fa-2x fa-solid fa-bell"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

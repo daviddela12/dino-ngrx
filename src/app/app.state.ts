@@ -5,6 +5,7 @@ import {alertReducer} from "./components/alert/alert.reducers";
 import {ItemState} from "./components/item/item.state";
 import {itemReducer} from "./components/item/item.reducers";
 import {Item2Effects} from "./components/item2/item2.effects";
+import {DinoEffects} from "./store/dino/dino.effects";
 
 // Fuente de la verdad
 export interface AppState {
@@ -18,4 +19,4 @@ export const AppReducers: ActionReducerMap<AppState> = {
   itemsState: itemReducer
 }
 
-export const AppEffects = [ItemEffects, Item2Effects]
+export const AppEffects = [ItemEffects, Item2Effects, DinoEffects]

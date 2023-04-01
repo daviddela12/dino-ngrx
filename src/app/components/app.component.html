@@ -1,6 +1,23 @@
-<app-header></app-header>
-<app-alert></app-alert>
-<router-outlet></router-outlet>
-Primera manera, sin Feature: {{(dinos$ | async | json)?.length}}
-<br>
-Segunda manera, con Feature: {{(dinos2$ | async | json)}}
+<div class="block">
+  <app-header></app-header>
+</div>
+<div class="container">
+  <app-dino-wrapper></app-dino-wrapper>
+  <app-alert></app-alert>
+  <router-outlet></router-outlet>
+  Primera manera, sin Feature: {{(dinos$ | async | json)?.length}}
+  <br>
+  Segunda manera, con Feature: {{(dinos2$ | async | json)}}
+
+</div>
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Dino Collector</strong> by <i>daviddela</i>.
+      <a href="https://github.com/daviddela12" target="_blank">GitHub</a>.
+    </p>
+  </div>
+</footer>
+
+
+

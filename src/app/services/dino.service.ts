@@ -4,6 +4,7 @@ import {delay, map, mergeMap, Observable, of} from "rxjs";
 import {Item2} from "../components/item2/item2.model";
 import {catchError} from "rxjs/operators";
 import {HandleErrorsService} from "./handle-errors.service";
+import {Dino} from "../store/dino/dino.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,17 @@ export class DinoService {
       }))),
       delay(1500),
       catchError(this.handleErrorService.handleError<Item2[]>('getDinos2', []))
+    );
+  }
+
+  getDinoCollection(): Observable<Dino[]> {
+    return this.httpClient.get<Dino[]>(this.url).pipe(
+      map(response => response.map(obj => ({
+        name: obj.name,
+        image: obj.image
+      }))),
+      delay(2500),
+      catchError(this.handleErrorService.handleError<Dino[]>('getDinos2', []))
     );
   }
 }

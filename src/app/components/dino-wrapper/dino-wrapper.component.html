@@ -1,0 +1,6 @@
+<div class="columns is-desktop is-multiline">
+  <div class="column is-3" *ngFor="let dinoRecord of dinoCollection$ | async">
+    <app-dino-card [dino]="dinoRecord"></app-dino-card>
+    <app-loading></app-loading>
+  </div>
+</div>

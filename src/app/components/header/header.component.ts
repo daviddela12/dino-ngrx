@@ -1,23 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-import {select, Store} from "@ngrx/store";
-import {AppState} from "../../app.state";
-import {items2Feature} from "../item2/item2.reducers";
-import {ItemSelectors} from "../item/item.selectors";
+import {Component, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
-  loading$: Observable<boolean> = new Observable<boolean>();
-  loading2$: Observable<boolean> = new Observable<boolean>();
+export class HeaderComponent {
+  @ViewChild('navBurger') navBurger: ElementRef = {} as ElementRef;
+  @ViewChild('navMenu') navMenu: ElementRef = {} as ElementRef;
 
-  constructor(private store: Store<AppState>) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.loading$ = this.store.pipe(select(ItemSelectors.loadingItemsSelector));
-    this.loading2$ = this.store.pipe(select(items2Feature.selectLoading));
+  toggleNavbar() {
+    this.navBurger.nativeElement.classList.toggle('is-active');
+    this.navMenu.nativeElement.classList.toggle('is-active');
   }
 }
