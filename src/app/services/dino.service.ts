@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {delay, map, mergeMap, Observable, of} from "rxjs";
+import {delay, map, mergeAll, mergeMap, Observable, of, take} from "rxjs";
 import {Item2} from "../components/item2/item2.model";
 import {catchError} from "rxjs/operators";
 import {HandleErrorsService} from "./handle-errors.service";
@@ -35,10 +35,11 @@ export class DinoService {
     return this.httpClient.get<Dino[]>(this.url).pipe(
       map(response => response.map(obj => ({
         name: obj.name,
+        description: obj.description,
         image: obj.image
-      }))),
+      })).slice(1,11)),
       delay(2500),
-      catchError(this.handleErrorService.handleError<Dino[]>('getDinos2', []))
+      catchError(this.handleErrorService.handleError<Dino[]>('getDinoCollection', []))
     );
   }
 }

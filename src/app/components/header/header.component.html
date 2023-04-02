@@ -1,7 +1,8 @@
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    <a class="navbar-item" [routerLink]="['']">
+      <!--<img src="assets/logo.png">-->
+      <img src="assets/logo-2.svg">
     </a>
     <a #navBurger (click)="toggleNavbar()" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
       <span aria-hidden="true"></span>
@@ -13,6 +14,9 @@
     <div class="navbar-start">
       <a class="navbar-item">
         Notification Page
+      </a>
+      <a class="navbar-item" routerLinkActive="has-background-success-light has-text-black" [routerLink]="['/dino-details']" >
+        Add new dino
       </a>
     </div>
     <div class="navbar-end">

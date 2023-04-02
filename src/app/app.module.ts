@@ -16,6 +16,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { DinoCardComponent } from './components/dino-card/dino-card.component';
 import {DinoModule} from "./store/dino/dino.module";
 import { DinoWrapperComponent } from './components/dino-wrapper/dino-wrapper.component';
+import { DinoDetailsComponent } from './components/dino-details/dino-details.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { DinoWrapperComponent } from './components/dino-wrapper/dino-wrapper.com
     AlertComponent,
     LoadingComponent,
     DinoCardComponent,
-    DinoWrapperComponent
+    DinoWrapperComponent,
+    DinoDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     Item2Module,
     DinoModule,
     StoreModule.forRoot(AppReducers),
