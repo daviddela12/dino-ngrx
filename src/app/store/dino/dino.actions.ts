@@ -5,6 +5,7 @@ export const DinoActions = createActionGroup({
   source: "[Dino Card Component]",
   events: {
     'Load Dinos': emptyProps(),
-    'Load Dinos Success': props<{dinoCollection: Dino[]}>()
+    'Load Dinos Success': props<{dinoCollection: Dino[]}>(),
+    'Load Dinos Error': props<{error: any}>()
   }
 })

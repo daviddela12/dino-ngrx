@@ -10,7 +10,6 @@ import { environment } from '../environments/environment';
 import {HttpClientModule} from "@angular/common/http";
 import {AppEffects, AppReducers} from "./app.state";
 import { EffectsModule } from '@ngrx/effects';
-import { AlertComponent } from './components/alert/alert.component';
 import {Item2Module} from "./components/item2/item2.module";
 import { LoadingComponent } from './components/loading/loading.component';
 import { DinoCardComponent } from './components/dino-card/dino-card.component';
@@ -18,16 +17,17 @@ import {DinoModule} from "./store/dino/dino.module";
 import { DinoWrapperComponent } from './components/dino-wrapper/dino-wrapper.component';
 import { DinoDetailsComponent } from './components/dino-details/dino-details.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AlertComponent,
     LoadingComponent,
     DinoCardComponent,
     DinoWrapperComponent,
-    DinoDetailsComponent
+    DinoDetailsComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

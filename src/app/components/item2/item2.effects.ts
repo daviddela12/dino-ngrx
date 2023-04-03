@@ -3,10 +3,9 @@ import {DinoService} from "../../services/dino.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {Item2Actions} from "./item2.actions";
 import {catchError, exhaustMap, switchMap} from "rxjs/operators";
-import {EMPTY, Observable} from "rxjs";
-import {error} from "@angular/compiler/src/util";
+import {EMPTY} from "rxjs";
 import {Item2} from "./item2.model";
-import {AlertActions} from "../alert/alert.actions";
+import {HistoryActions} from "../../store/history/history.actions";
 
 @Injectable()
 export class Item2Effects {
@@ -37,7 +36,7 @@ export class Item2Effects {
         [// TODO AÑADIR UNA LLAMADA DENTRO DEL ARRAY
           //  A NOTICIACION DICIENDO QUE HA HABIDO UN CAMBIO
           Item2Actions.loadItems2Success({items: dinos}),
-          AlertActions.addAlert({newAlert: {description: "hola2"}})
+          HistoryActions.addHistoryItem({newHistoryItem: {description: "hola2"}})
         ]
       ),
       catchError((error) => EMPTY)

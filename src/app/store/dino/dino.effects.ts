@@ -1,11 +1,10 @@
 import {Injectable} from "@angular/core";
 import {DinoService} from "../../services/dino.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {catchError, exhaustMap, switchMap} from "rxjs/operators";
-import {EMPTY} from "rxjs";
+import { exhaustMap, switchMap} from "rxjs/operators";
 import {DinoActions} from "./dino.actions";
-import {AlertActions} from "../../components/alert/alert.actions";
 import {Dino} from "./dino.model";
+import {HistoryActions} from "../history/history.actions";
 
 @Injectable()
 export class DinoEffects {
@@ -14,18 +13,17 @@ export class DinoEffects {
     private dinoService: DinoService
   ) { }
 
-  item2Effects$ = createEffect(() => this.actions$
-    .pipe(
+  item2Effects$ = createEffect(() => this.actions$.pipe(
       ofType(DinoActions.loadDinos),
       exhaustMap(() => this.dinoService.getDinoCollection()),
       switchMap((dinosResponse: Dino[]) =>
-        [// TODO AÑADIR UNA LLAMADA DENTRO DEL ARRAY
-          //  A NOTICIACION DICIENDO QUE HA HABIDO UN CAMBIO
+        [
+          // Action dinos cargados correctamente
           DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
-          AlertActions.addAlert({newAlert: {description: "hola2"}})
-        ]
-      ),
-      catchError((error) => EMPTY)
+          // Action de Añadir Alerta
+          HistoryActions.addHistoryItem({newHistoryItem: {description: "Listado de dinosaurios cargada correctamente"}})
+        ],
+      )
     )
   );
 

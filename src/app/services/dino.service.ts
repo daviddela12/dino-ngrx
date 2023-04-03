@@ -10,7 +10,7 @@ import {Dino} from "../store/dino/dino.model";
   providedIn: 'root'
 })
 export class DinoService {
-  url: string = '/assets/db/dinos.json';
+  readonly url: string = '/assets/db/dinos.json';
 
   constructor(private httpClient: HttpClient, private handleErrorService: HandleErrorsService) { }
 

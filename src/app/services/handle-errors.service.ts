@@ -16,7 +16,8 @@ export class HandleErrorsService {
    */
   public handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      console.error(operation);
+      console.error(error.error);
       return of(result as T);
     };
   }
