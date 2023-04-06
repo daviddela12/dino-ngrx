@@ -29,9 +29,10 @@ export class DinoDetailsComponent implements OnInit {
       return;
     }
     const newDino: Dino = {
-      id: Math.random(),
       name: this.dinoForm.value.name,
-      description: this.dinoForm.value.description
+      description: this.dinoForm.value.description,
+      date_created: new Date(),
+      date_updated: new Date()
     }
     this.store.dispatch(DinoActions.createNewDino({newDino}));
   }

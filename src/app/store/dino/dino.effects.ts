@@ -27,7 +27,6 @@ export class DinoEffects {
               HistoryActions.addHistoryItem({newHistoryItem: {description: "Cargado listado de dinosaurios"}})
             ],
           ),
-          tap(() => console.log("llamado")),
           // FORMA 2
 /**          mergeMap((dinosResponse: Dino[]) => [
             DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
@@ -39,10 +38,19 @@ export class DinoEffects {
     )
   );
 
-  /** TODO
   newDinoEffects$ = createEffect(() => this.actions$.pipe(
-
+      ofType(DinoActions.createNewDino),
+      exhaustMap(({newDino}) => {
+        return this.dinoService.addDino(newDino).pipe(
+          switchMap((dinoResponse: Dino) =>
+            [
+              DinoActions.createNewDinoSuccess({newDino: dinoResponse}),
+              HistoryActions.addHistoryItem({newHistoryItem: {description: "Added dinosaur to your collection"}})
+            ],
+          ),
+          catchError(error => of(DinoActions.loadDinosError({ error })))
+        )
+      })
     )
   );
-   **/
 }

@@ -10,7 +10,7 @@ import {Dino} from "../store/dino/dino.model";
   providedIn: 'root'
 })
 export class DinoService {
-  readonly url: string = '/assets/db/dinos.json';
+  readonly url: string = 'http://localhost:3000/dinoCollection';
 
   constructor(private httpClient: HttpClient, private handleErrorService: HandleErrorsService) { }
 
@@ -39,11 +39,20 @@ export class DinoService {
           id: obj.id,
           name: obj.name,
           description: obj.description,
-          image: obj.image
-        })).slice(1, 11)),
+          image: obj.image,
+          date_created: obj.date_created,
+          date_updated: obj.date_updated
+        }))), //.slice(1, 11)),
+        map(response => response.sort(this.sortFn)),
         delay(2500)
       );
     }
     return throwError(() => new Error("Getting dinos. Try again."));
   }
+
+  addDino(newDino: Dino): Observable<Dino> {
+    return this.httpClient.post<Dino>(this.url, newDino);
+  }
+
+  sortFn = (a: Dino, b: Dino) => new Date(b.date_updated).getTime() - new Date(a.date_updated).getTime();
 }
