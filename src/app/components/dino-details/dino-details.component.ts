@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Store} from "@ngrx/store";
+import {DinoActions} from "../../store/dino/dino.actions";
 import {Dino} from "../../store/dino/dino.model";
 
 @Component({
@@ -10,15 +12,14 @@ import {Dino} from "../../store/dino/dino.model";
 export class DinoDetailsComponent implements OnInit {
   dinoForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private store: Store) { }
 
   ngOnInit(): void {
-    // @ts-ignore
     this.dinoForm = this.formBuilder.group(
       {
         name: ["", Validators.required],
         description: ["", Validators.required],
-        image: ["", Validators.required, this.requiredFileType('png')]
+        // image: ["", Validators.required, this.requiredFileType('png')]
       }
     )
   }
@@ -27,6 +28,12 @@ export class DinoDetailsComponent implements OnInit {
     if(this.dinoForm.invalid) {
       return;
     }
+    const newDino: Dino = {
+      id: Math.random(),
+      name: this.dinoForm.value.name,
+      description: this.dinoForm.value.description
+    }
+    this.store.dispatch(DinoActions.createNewDino({newDino}));
   }
 
   private requiredFileType( type: string ) {
@@ -39,7 +46,6 @@ export class DinoDetailsComponent implements OnInit {
             requiredFileType: true
           };
         }
-
         return null;
       }
 

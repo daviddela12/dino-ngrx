@@ -6,6 +6,8 @@ export const DinoActions = createActionGroup({
   events: {
     'Load Dinos': emptyProps(),
     'Load Dinos Success': props<{dinoCollection: Dino[]}>(),
-    'Load Dinos Error': props<{error: any}>()
+    'Load Dinos Error': props<{error: any}>(),
+    'Create new Dino': props<{newDino: Dino}>(),
+    'Create new Dino Success': props<{newDino: Dino}>()
   }
 })

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {delay, map, mergeAll, mergeMap, Observable, of, take} from "rxjs";
+import {delay, map, mergeAll, mergeMap, Observable, of, take, throwError} from "rxjs";
 import {Item2} from "../components/item2/item2.model";
 import {catchError} from "rxjs/operators";
 import {HandleErrorsService} from "./handle-errors.service";
@@ -32,14 +32,18 @@ export class DinoService {
   }
 
   getDinoCollection(): Observable<Dino[]> {
-    return this.httpClient.get<Dino[]>(this.url).pipe(
-      map(response => response.map(obj => ({
-        name: obj.name,
-        description: obj.description,
-        image: obj.image
-      })).slice(1,11)),
-      delay(2500),
-      catchError(this.handleErrorService.handleError<Dino[]>('getDinoCollection', []))
-    );
+    const randomTrue = 1; // Math.round(Math.random());
+    if (randomTrue) {
+      return this.httpClient.get<Dino[]>(this.url).pipe(
+        map(response => response.map(obj => ({
+          id: obj.id,
+          name: obj.name,
+          description: obj.description,
+          image: obj.image
+        })).slice(1, 11)),
+        delay(2500)
+      );
+    }
+    return throwError(() => new Error("Getting dinos. Try again."));
   }
 }

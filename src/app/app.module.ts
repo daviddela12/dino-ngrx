@@ -18,6 +18,7 @@ import { DinoWrapperComponent } from './components/dino-wrapper/dino-wrapper.com
 import { DinoDetailsComponent } from './components/dino-details/dino-details.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { HistoryComponent } from './components/history/history.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HistoryComponent } from './components/history/history.component';
     DinoCardComponent,
     DinoWrapperComponent,
     DinoDetailsComponent,
-    HistoryComponent
+    HistoryComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

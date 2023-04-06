@@ -14,7 +14,9 @@ export class DinoWrapperComponent implements OnInit {
 
   dinoCollection$: Observable<Dino[]> = new Observable<Dino[]>();
 
-  loadingDinoCollections$: Observable<boolean> = new Observable<boolean>();
+  loadingDinoCollection$: Observable<boolean> = new Observable<boolean>();
+
+  errorDinoCollection$: Observable<string> = new Observable<string>();
 
   constructor(private store: Store) { }
 
@@ -26,8 +28,8 @@ export class DinoWrapperComponent implements OnInit {
 
   private defineSelect() {
     this.dinoCollection$ = this.store.pipe(select(dinoFeature.selectDinoCollection));
-    this.loadingDinoCollections$ = this.store.pipe(select(dinoFeature.selectLoading));
-
+    this.loadingDinoCollection$ = this.store.pipe(select(dinoFeature.selectLoadingDinoCollection));
+    this.errorDinoCollection$ = this.store.pipe(select(dinoFeature.selectErrorDinoCollection))
   }
 
 }

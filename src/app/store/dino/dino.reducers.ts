@@ -5,7 +5,8 @@ import {DinoActions} from "./dino.actions";
 // 1 Initial State
 export const initialState: DinoState = {
   dinoCollection: [],
-  loading: false
+  loadingDinoCollection: false,
+  errorDinoCollection: ""
 }
 
 export const dinoFeature = createFeature({
@@ -14,12 +15,27 @@ export const dinoFeature = createFeature({
     initialState,
     on(DinoActions.loadDinos, (state) => ({
       ...state,
-      loading: true
+      loadingDinoCollection: true,
+      errorDinoCollection: null
     })),
+
     on(DinoActions.loadDinosSuccess, (state, {dinoCollection}) => ({
       ...state,
-      loading: false,
-      dinoCollection
+      loadingDinoCollection: false,
+      dinoCollection,
+      errorDinoCollection: null
+    })),
+
+    on(DinoActions.loadDinosError, (state, {error}) => ({
+      ...state,
+      loadingDinoCollection: false,
+      dinoCollection: [],
+      errorDinoCollection: error
+    })),
+
+    on(DinoActions.createNewDino, (state, {newDino}) => ({
+      ...state,
+      dinoCollection: [...state.dinoCollection, newDino]
     }))
   )
 });
