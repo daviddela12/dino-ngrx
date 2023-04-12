@@ -1,5 +1,3 @@
-<app-loading *ngIf="loadingDinoCollection$ | async"></app-loading>
-<app-error [error]="errorDinoCollection$ | async"></app-error>
 <div class="columns is-desktop is-multiline">
   <div class="column is-3" *ngFor="let dinoRecord of dinoCollection$ | async">
     <app-dino-card [dino]="dinoRecord"></app-dino-card>

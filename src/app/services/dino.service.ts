@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {delay, map, mergeAll, mergeMap, Observable, of, take, throwError} from "rxjs";
 import {Item2} from "../components/item2/item2.model";
-import {catchError} from "rxjs/operators";
+import {catchError, tap} from "rxjs/operators";
 import {HandleErrorsService} from "./handle-errors.service";
 import {Dino} from "../store/dino/dino.model";
 
@@ -11,12 +11,15 @@ import {Dino} from "../store/dino/dino.model";
 })
 export class DinoService {
   readonly url: string = 'http://localhost:3000/dinoCollection';
+  private readonly delayLow = 500;
+  private readonly delayMid = 1500;
+  private readonly delayHig = 2500;
 
   constructor(private httpClient: HttpClient, private handleErrorService: HandleErrorsService) { }
 
   getDinos(): Observable<any> {
     return this.httpClient.get(this.url).pipe(
-      delay(1500)
+      delay(this.delayLow)
     );
   }
 
@@ -26,7 +29,7 @@ export class DinoService {
       map(response => response.map(obj => ({
         name: obj.name
       }))),
-      delay(1500),
+      delay(this.delayMid),
       catchError(this.handleErrorService.handleError<Item2[]>('getDinos2', []))
     );
   }
@@ -44,14 +47,26 @@ export class DinoService {
           date_updated: obj.date_updated
         }))), //.slice(1, 11)),
         map(response => response.sort(this.sortFn)),
-        delay(2500)
+        delay(this.delayMid)
       );
     }
     return throwError(() => new Error("Getting dinos. Try again."));
   }
 
+  getDinoById(dinoId: number): Observable<Dino> {
+    return this.httpClient.get<Dino>(this.url+'/'+dinoId).pipe(delay(this.delayMid));
+  }
+
   addDino(newDino: Dino): Observable<Dino> {
-    return this.httpClient.post<Dino>(this.url, newDino);
+    return this.httpClient.post<Dino>(this.url, newDino).pipe(delay(this.delayMid));
+  }
+
+  updateDino(updatedDino: Dino): Observable<Dino> {
+    return this.httpClient.put<Dino>(this.url+'/'+updatedDino.id, updatedDino).pipe(delay(this.delayMid));
+  }
+
+  deleteDino(deleteDinoId: number): Observable<any> {
+    return this.httpClient.delete(this.url+'/'+deleteDinoId).pipe(delay(this.delayMid));
   }
 
   sortFn = (a: Dino, b: Dino) => new Date(b.date_updated).getTime() - new Date(a.date_updated).getTime();

@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {HttpClientModule} from "@angular/common/http";
-import {AppEffects, AppReducers} from "./app.state";
+import {AppReducers} from "./app.state";
 import { EffectsModule } from '@ngrx/effects';
 import {Item2Module} from "./components/item2/item2.module";
 import { LoadingComponent } from './components/loading/loading.component';
@@ -19,6 +19,8 @@ import { DinoDetailsComponent } from './components/dino-details/dino-details.com
 import {ReactiveFormsModule} from "@angular/forms";
 import { HistoryComponent } from './components/history/history.component';
 import { ErrorComponent } from './components/error/error.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ErrorComponent } from './components/error/error.component';
     DinoWrapperComponent,
     DinoDetailsComponent,
     HistoryComponent,
-    ErrorComponent
+    ErrorComponent,
+    NotificationComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,7 @@ import { ErrorComponent } from './components/error/error.component';
     StoreModule.forRoot(AppReducers),
     // StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot(AppEffects)
+    EffectsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,6 +9,7 @@ import {mergeMap, of} from "rxjs";
 
 @Injectable()
 export class DinoEffects {
+
   constructor(
     private actions$: Actions,
     private dinoService: DinoService
@@ -21,9 +22,7 @@ export class DinoEffects {
           // FORMA 1
           switchMap((dinosResponse: Dino[]) =>
             [
-              // Action dinos cargados correctamente
               DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
-              // Action de Añadir Alerta
               HistoryActions.addHistoryItem({newHistoryItem: {description: "Cargado listado de dinosaurios"}})
             ],
           ),
@@ -32,7 +31,23 @@ export class DinoEffects {
             DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
             HistoryActions.addHistoryItem({newHistoryItem: {description: "Cargado listado de dinosaurios"}}),
           ]),**/
-          catchError(error => of(DinoActions.loadDinosError({ error })))
+          catchError(error => of(DinoActions.dinosError({ error })))
+        )
+      }),
+    )
+  );
+
+  getDinoByIdEffects$ = createEffect(() => this.actions$.pipe(
+      ofType(DinoActions.getDinoById),
+      exhaustMap(({dinoId}) => {
+        return this.dinoService.getDinoById(dinoId).pipe(
+          switchMap((dinoResponse: Dino) =>
+            [
+              DinoActions.getDinoByIdSuccess({dinoSelected: dinoResponse}),
+              HistoryActions.addHistoryItem({newHistoryItem: {description: "Dino Selected"}})
+            ],
+          ),
+          catchError(error => of(DinoActions.dinosError({ error })))
         )
       }),
     )
@@ -48,9 +63,43 @@ export class DinoEffects {
               HistoryActions.addHistoryItem({newHistoryItem: {description: "Added dinosaur to your collection"}})
             ],
           ),
-          catchError(error => of(DinoActions.loadDinosError({ error })))
+          catchError(error => of(DinoActions.dinosError({ error })))
         )
       })
     )
   );
+
+  updateDinoEffects$ = createEffect(() => this.actions$.pipe(
+      ofType(DinoActions.updateDino),
+      exhaustMap(({updatedDino}) => {
+        return this.dinoService.updateDino(updatedDino).pipe(
+          exhaustMap((dinoResponse: Dino) =>
+            [
+              DinoActions.updateDinoSuccess({updatedDino: dinoResponse}),
+              HistoryActions.addHistoryItem({newHistoryItem: {description: "Updated dinosaur to your collection"}})
+            ],
+          ),
+          catchError(error => of(DinoActions.dinosError({ error })))
+        )
+      })
+    )
+  );
+
+  deleteDinoEffects$ = createEffect(() => this.actions$.pipe(
+      ofType(DinoActions.deleteDino),
+      exhaustMap(({deletedDinoId}) => {
+        return this.dinoService.deleteDino(deletedDinoId).pipe(
+          exhaustMap((response: any) =>
+            [
+              DinoActions.deleteDinoSuccess({deletedDinoId: deletedDinoId}),
+              HistoryActions.addHistoryItem({newHistoryItem: {description: "Deleted dinosaur from your collection"}})
+            ],
+          ),
+          catchError(error => of(DinoActions.dinosError({ error })))
+        )
+      })
+    )
+  );
+
+
 }

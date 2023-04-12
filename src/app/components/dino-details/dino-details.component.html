@@ -1,8 +1,11 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="dinoForm">
+  <input formControlName="id" type="hidden"/>
   <div class="field">
     <label class="label">Name</label>
     <div class="control">
-      <input formControlName="name" class="input" [ngClass]="{'is-invalid is-danger': dinoForm.controls['name'].errors}" type="text" placeholder="Name">
+      <input formControlName="name" class="input"
+             [ngClass]="{'is-invalid is-danger': dinoForm.controls['name'].errors}"
+             type="text" placeholder="Name">
     </div>
     <div *ngIf="dinoForm.controls['name'].errors" class="invalid-name has-text-danger">
       <div *ngIf="dinoForm.controls['name'].errors['required']">Name required</div>
@@ -10,9 +13,11 @@
   </div>
 
   <div class="field">
-    <label class="label">Message</label>
+    <label class="label">Notes</label>
     <div class="control">
-      <textarea formControlName="description" class="textarea" [ngClass]="{'is-invalid is-danger': dinoForm.controls['description'].errors}" placeholder="Description"></textarea>
+      <textarea formControlName="description"
+                class="textarea" [ngClass]="{'is-invalid is-danger': dinoForm.controls['description'].errors}"
+                placeholder="Description"></textarea>
     </div>
     <div *ngIf="dinoForm.controls['description'].errors" class="invalid-name has-text-danger">
       <div *ngIf="dinoForm.controls['description'].errors['required']">Description required</div>
@@ -38,7 +43,7 @@
       <button [disabled]="dinoForm.invalid" class="button is-link">Submit</button>
     </div>
     <div class="control">
-      <button class="button is-link is-light">Cancel</button>
+      <button class="button is-link is-light" [routerLink]="['/']">Cancel</button>
     </div>
   </div>
 </form>

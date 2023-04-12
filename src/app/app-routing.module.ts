@@ -2,11 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {DinoWrapperComponent} from "./components/dino-wrapper/dino-wrapper.component";
 import {DinoDetailsComponent} from "./components/dino-details/dino-details.component";
+import {HistoryComponent} from "./components/history/history.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/dino-list', pathMatch: 'full' },
   { path: 'dino-list', component: DinoWrapperComponent},
-  { path: 'dino-details', component: DinoDetailsComponent}
+  { path: 'dino-details',
+    children: [
+      { path: '', component: DinoDetailsComponent },
+      { path: ':dinoId', component: DinoDetailsComponent }
+    ]
+  },
+  { path: 'history', component: HistoryComponent},
 ];
 
 @NgModule({

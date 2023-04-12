@@ -1,5 +1,7 @@
-<article *ngIf="error" class="message is-danger">
-  <div class="message-body">
-    {{error}}
-  </div>
-</article>
+<div class="section" *ngIf="error">
+  <article class="message is-danger">
+    <div class="message-body">
+      {{error+' '+error.message}}
+    </div>
+  </article>
+</div>

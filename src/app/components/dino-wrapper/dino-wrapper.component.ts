@@ -7,16 +7,11 @@ import {dinoFeature} from "../../store/dino/dino.reducers";
 
 @Component({
   selector: 'app-dino-wrapper',
-  templateUrl: './dino-wrapper.component.html',
-  styleUrls: ['./dino-wrapper.component.scss']
+  templateUrl: './dino-wrapper.component.html'
 })
 export class DinoWrapperComponent implements OnInit {
 
   dinoCollection$: Observable<Dino[]> = new Observable<Dino[]>();
-
-  loadingDinoCollection$: Observable<boolean> = new Observable<boolean>();
-
-  errorDinoCollection$: Observable<string> = new Observable<string>();
 
   constructor(private store: Store) { }
 
@@ -28,8 +23,6 @@ export class DinoWrapperComponent implements OnInit {
 
   private defineSelect() {
     this.dinoCollection$ = this.store.pipe(select(dinoFeature.selectDinoCollection));
-    this.loadingDinoCollection$ = this.store.pipe(select(dinoFeature.selectLoadingDinoCollection));
-    this.errorDinoCollection$ = this.store.pipe(select(dinoFeature.selectErrorDinoCollection))
   }
 
 }
