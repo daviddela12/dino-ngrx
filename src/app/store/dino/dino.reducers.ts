@@ -33,7 +33,7 @@ export const dinoFeature = createFeature({
       dinoCollection: [...state.dinoCollection, newDino]
     })),
 
-    on(DinoActions.getDinoById, (state) => ({
+    on(DinoActions.getDinoById, DinoActions.updateDino, DinoActions.deleteDino, (state) => ({
       ...state,
       loadingDino: true,
       errorDino: null
@@ -45,22 +45,10 @@ export const dinoFeature = createFeature({
       loadingDino: false
     })),
 
-    on(DinoActions.updateDino, (state) => ({
-      ...state,
-      loadingDino: true,
-      errorDino: null
-    })),
-
     on(DinoActions.updateDinoSuccess, (state, {updatedDino}) => ({
       ...state,
       dinoCollection: state.dinoCollection.map(dino => dino.id === updatedDino.id ? Object.assign({}, updatedDino) : dino),
       loadingDino: false
-    })),
-
-    on(DinoActions.deleteDino, (state) => ({
-      ...state,
-      loadingDino: true,
-      errorDino: null
     })),
 
     on(DinoActions.deleteDinoSuccess, (state, {deletedDinoId}) => ({
