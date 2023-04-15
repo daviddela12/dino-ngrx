@@ -20,9 +20,10 @@
       <div class="navbar-item">
         <a [routerLink]="['/history']">
           <span class="icon has-text-white">
-            <i class="fas fa-2x fa-solid fa-bell"></i>
+            <i class="fas fa-solid fa-bell"></i>
           </span>
         </a>
+        <span *ngIf="historyCollection$ | async as historyCounter" class="notification-badge">{{historyCounter}}</span>
       </div>
     </div>
   </div>

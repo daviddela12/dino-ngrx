@@ -1,1 +1,7 @@
-{{historyCollection$ | async | json}}
+<h1 class="title">History User Actions</h1>
+<article *ngFor="let historyRecord of historyCollection$ | async" class="message is-dark">
+  <div class="message-body">
+    {{historyRecord.description}}
+  </div>
+</article>
+

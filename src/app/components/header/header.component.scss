@@ -1,0 +1,15 @@
+.navbar-item {
+  padding-right: 25px;
+  .icon {
+    font-size: 25px;
+  }
+  .notification-badge {
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    padding: 1px 10px;
+    position:absolute;
+    right:6px;
+    top:2px;
+  }
+}

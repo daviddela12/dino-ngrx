@@ -6,7 +6,7 @@ export const historyReducer = createReducer(
   initialState,
   on(HistoryActions.addHistoryItem, (state, {newHistoryItem}) => ({
     ...state,
-      historyCollection: [...state.historyCollection, newHistoryItem]
+      historyCollection: [newHistoryItem, ...state.historyCollection]
   })
   )
 );

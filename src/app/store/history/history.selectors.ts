@@ -8,7 +8,13 @@ const historyCollectionSelector = createSelector(
   (state) => state.historyCollection
 );
 
+const historyCollectionCountSelector = createSelector(
+  historyCollectionSelector,
+  (state) => state.length
+)
+
 export const HistorySelectors = {
   historyStateSelector,
-  historyCollectionSelector
+  historyCollectionSelector,
+  historyCollectionCountSelector
 }
