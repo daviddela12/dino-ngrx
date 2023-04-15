@@ -3,8 +3,7 @@
 </div>
 <div class="container">
   <app-notification></app-notification>
-  <app-loading *ngIf="loadingDino$ | async"></app-loading>
-  <app-error [error]="errorDino$ | async"></app-error>
+  <app-loading></app-loading>
   <div class="section pt-2">
     <router-outlet></router-outlet>
   </div>

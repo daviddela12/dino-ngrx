@@ -23,6 +23,12 @@
       <div *ngIf="dinoForm.controls['description'].errors['required']">Description required</div>
     </div>
   </div>
+  <div class="field">
+    <label class="label">Image</label>
+    <div class="control">
+      <img src="{{dino?.image}}">
+    </div>
+  </div>
 <!--
   <div class="file">
     <label class="file-label">

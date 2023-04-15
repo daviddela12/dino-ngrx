@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
 import {DinoActions} from "../../store/dino/dino.actions";
 import {Dino} from "../../store/dino/dino.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {selectDinoById} from "../../store/dino/dino.selectors";
 import {dinoFeature} from "../../store/dino/dino.reducers";
@@ -17,10 +17,12 @@ import {tap} from "rxjs/operators";
 export class DinoDetailsComponent implements OnInit {
   dinoForm: FormGroup;
   dinoId: number;
+  dino: Dino;
 
   constructor(private formBuilder: FormBuilder,
               private store: Store,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -32,6 +34,7 @@ export class DinoDetailsComponent implements OnInit {
         select(dinoFeature.selectDinoSelected)
       ).subscribe((dinoResponse: Dino) => {
           if (dinoResponse) {
+            this.dino = dinoResponse;
             this.dinoForm.setValue({
               id: dinoResponse.id,
               name: dinoResponse.name,
@@ -49,6 +52,7 @@ export class DinoDetailsComponent implements OnInit {
     const newDino: Dino = {
       id: this.dinoForm.value.id,
       name: this.dinoForm.value.name,
+      image: "assets/images/dinos/"+this.randomIntFromInterval(1, 5)+".png",
       description: this.dinoForm.value.description,
       date_updated: new Date()
     }
@@ -56,9 +60,10 @@ export class DinoDetailsComponent implements OnInit {
       newDino.date_created = new Date()
       this.store.dispatch(DinoActions.createNewDino({newDino}));
     } else {
+      newDino.image = this.dino.image;
       this.store.dispatch(DinoActions.updateDino({updatedDino: newDino}));
     }
-    // TODO show successfull message
+    this.router.navigate(["/"]);
   }
 
   private buildForm() {
@@ -66,27 +71,12 @@ export class DinoDetailsComponent implements OnInit {
       {
         id: [""],
         name: ["", Validators.required],
-        description: ["", Validators.required],
-        // image: ["", Validators.required, this.requiredFileType('png')]
+        description: ["", Validators.required]
       }
     )
   }
 
-  private requiredFileType( type: string ) {
-    return function (control: FormControl) {
-      const file = control.value;
-      if ( file ) {
-        const extension = file.name.split('.')[1].toLowerCase();
-        if ( type.toLowerCase() !== extension.toLowerCase() ) {
-          return {
-            requiredFileType: true
-          };
-        }
-        return null;
-      }
-
-      return null;
-    };
+  private randomIntFromInterval(min: number, max: number) { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min)
   }
-
 }

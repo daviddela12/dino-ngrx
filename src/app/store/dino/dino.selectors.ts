@@ -13,5 +13,4 @@ const {
   reducer,
   selectDinoCollection, // type: MemoizedSelector<Record<string, any>, Product[]>
   selectLoadingDino, // type: MemoizedSelector<Record<string, any>, string | null>
-  selectErrorDino
 } = dinoFeature;

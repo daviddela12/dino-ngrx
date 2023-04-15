@@ -1,14 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {AppState} from "../../store";
+import {select, Store} from "@ngrx/store";
+import {Observable} from "rxjs";
+import {Notification} from "../../store/notification/notification.model";
+import {notificationFeature} from "../../store/notification/notification.reducers";
+import {NotificationActions} from "../../store/notification/notification.actions";
 
 @Component({
   selector: 'app-notification',
-  templateUrl: './notification.component.html'
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.scss']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent {
 
-  constructor() { }
+  notification$: Observable<Notification> = new Observable<Notification>();
 
-  ngOnInit(): void {
+  constructor(private store: Store<AppState>) {
+    this.notification$ = this.store.pipe(select(notificationFeature.selectNotification));
+  }
+
+  deleteNotification() {
+    this.store.dispatch(NotificationActions.deleteNotification());
   }
 
 }

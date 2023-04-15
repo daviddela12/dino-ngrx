@@ -1,10 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 import {HistoryActions} from "./history.actions";
-import {HistoryState} from "./history.state";
-
-export const initialState: HistoryState = {
-  historyCollection: []
-}
+import {HistoryState, initialState} from "./history.state";
 
 export const historyReducer = createReducer(
   initialState,

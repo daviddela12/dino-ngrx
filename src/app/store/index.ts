@@ -1,6 +1,6 @@
 import {ActionReducerMap} from "@ngrx/store";
-import {HistoryState} from "./store/history/history.state";
-import {historyReducer} from "./store/history/history.reducers";
+import {HistoryState} from "./history/history.state";
+import {historyReducer} from "./history/history.reducers";
 
 // Fuente de la verdad
 export interface AppState {

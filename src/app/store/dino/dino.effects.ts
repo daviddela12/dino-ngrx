@@ -6,6 +6,7 @@ import {DinoActions} from "./dino.actions";
 import {Dino} from "./dino.model";
 import {HistoryActions} from "../history/history.actions";
 import {mergeMap, of} from "rxjs";
+import {NotificationActions} from "../notification/notification.actions";
 
 @Injectable()
 export class DinoEffects {
@@ -20,18 +21,37 @@ export class DinoEffects {
       exhaustMap(() => {
         return this.dinoService.getDinoCollection().pipe(
           // FORMA 1
-          switchMap((dinosResponse: Dino[]) =>
-            [
-              DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {description: "Cargado listado de dinosaurios"}})
-            ],
+          switchMap((dinosResponse: Dino[]) => {
+              return [
+                DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
+                HistoryActions.addHistoryItem({newHistoryItem: {description: "Dinos loaded successfully"}}),
+                NotificationActions.showNotificationItem({
+                  notification: {
+                    message: "Dinos loaded successfully",
+                    type: "INFO"
+                  }
+                })
+              ];
+            },
           ),
           // FORMA 2
 /**          mergeMap((dinosResponse: Dino[]) => [
             DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
             HistoryActions.addHistoryItem({newHistoryItem: {description: "Cargado listado de dinosaurios"}}),
           ]),**/
-          catchError(error => of(DinoActions.dinosError({ error })))
+          catchError(error => of(error).pipe(
+            switchMap((error) => {
+                return [
+                  NotificationActions.showNotificationItem({
+                    notification: {
+                      message: error,
+                      type: "ERROR"
+                    }
+                  })
+                ];
+              }
+            )
+          ))
         )
       }),
     )
@@ -47,7 +67,19 @@ export class DinoEffects {
               HistoryActions.addHistoryItem({newHistoryItem: {description: "Dino Selected"}})
             ],
           ),
-          catchError(error => of(DinoActions.dinosError({ error })))
+          catchError(error => of(error).pipe(
+            switchMap((error) => {
+                return [
+                  NotificationActions.showNotificationItem({
+                    notification: {
+                      message: error,
+                      type: "ERROR"
+                    }
+                  })
+                ];
+              }
+            )
+          ))
         )
       }),
     )
@@ -60,10 +92,28 @@ export class DinoEffects {
           switchMap((dinoResponse: Dino) =>
             [
               DinoActions.createNewDinoSuccess({newDino: dinoResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {description: "Added dinosaur to your collection"}})
+              HistoryActions.addHistoryItem({newHistoryItem: {description: "Added dinosaur to your collection"}}),
+              NotificationActions.showNotificationItem({
+                notification: {
+                  message: "Added dinosaur to your collection",
+                  type: "INFO"
+                }
+              })
             ],
           ),
-          catchError(error => of(DinoActions.dinosError({ error })))
+          catchError(error => of(error).pipe(
+            switchMap((error) => {
+                return [
+                  NotificationActions.showNotificationItem({
+                    notification: {
+                      message: error,
+                      type: "ERROR"
+                    }
+                  })
+                ];
+              }
+            )
+          ))
         )
       })
     )
@@ -76,10 +126,28 @@ export class DinoEffects {
           exhaustMap((dinoResponse: Dino) =>
             [
               DinoActions.updateDinoSuccess({updatedDino: dinoResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {description: "Updated dinosaur to your collection"}})
+              HistoryActions.addHistoryItem({newHistoryItem: {description: "Updated dinosaur"}}),
+              NotificationActions.showNotificationItem({
+                notification: {
+                  message: "Updated dinosaur",
+                  type: "INFO"
+                }
+              })
             ],
           ),
-          catchError(error => of(DinoActions.dinosError({ error })))
+          catchError(error => of(error).pipe(
+            switchMap((error) => {
+                return [
+                  NotificationActions.showNotificationItem({
+                    notification: {
+                      message: error,
+                      type: "ERROR"
+                    }
+                  })
+                ];
+              }
+            )
+          ))
         )
       })
     )
@@ -92,10 +160,28 @@ export class DinoEffects {
           exhaustMap((response: any) =>
             [
               DinoActions.deleteDinoSuccess({deletedDinoId: deletedDinoId}),
-              HistoryActions.addHistoryItem({newHistoryItem: {description: "Deleted dinosaur from your collection"}})
+              HistoryActions.addHistoryItem({newHistoryItem: {description: "Deleted dinosaur from your collection"}}),
+              NotificationActions.showNotificationItem({
+                notification: {
+                  message: "Deleted dinosaur from your collection",
+                  type: "INFO"
+                }
+              })
             ],
           ),
-          catchError(error => of(DinoActions.dinosError({ error })))
+          catchError(error => of(error).pipe(
+            switchMap((error) => {
+                return [
+                  NotificationActions.showNotificationItem({
+                    notification: {
+                      message: error,
+                      type: "ERROR"
+                    }
+                  })
+                ];
+              }
+            )
+          ))
         )
       })
     )

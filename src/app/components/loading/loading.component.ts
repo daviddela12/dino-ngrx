@@ -11,14 +11,12 @@ import {dinoFeature} from "../../store/dino/dino.reducers";
 })
 export class LoadingComponent implements OnInit {
 
-  loading$: Observable<boolean> = new Observable<boolean>();
+  loadingDino$: Observable<boolean> = new Observable<boolean>();
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.loading$ = this.store.pipe(select(ItemSelectors.loadingItemsSelector));
-
-
+    this.loadingDino$ = this.store.pipe(select(dinoFeature.selectLoadingDino));
   }
 
 }

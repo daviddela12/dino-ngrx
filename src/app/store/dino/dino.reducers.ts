@@ -1,18 +1,10 @@
 import {createFeature, createReducer, on} from "@ngrx/store";
-import {DinoState} from "./dino.state";
+import {initialState} from "./dino.state";
 import {DinoActions} from "./dino.actions";
 import {Dino} from "./dino.model";
 
-// 1 Initial State
-export const initialState: DinoState = {
-  dinoCollection: [],
-  dinoSelected: null,
-  loadingDino: false,
-  errorDino: ""
-}
-
 export const dinoFeature = createFeature({
-  name: "dino",
+  name: "dinoState",
   reducer: createReducer(
     initialState,
     on(DinoActions.loadDinos, (state) => ({
