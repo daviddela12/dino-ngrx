@@ -16,7 +16,7 @@ export class HistoryComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.historyCollection$ = this.store.pipe(select(HistorySelectors.historyCollectionSelector));
+    this.historyCollection$ = this.store.pipe(select(HistorySelectors.historyCollectionFullSelector));
   }
 
 }

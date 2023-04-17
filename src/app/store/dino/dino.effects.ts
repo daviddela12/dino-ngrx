@@ -24,7 +24,9 @@ export class DinoEffects {
           switchMap((dinosResponse: Dino[]) => {
               return [
                 DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
-                HistoryActions.addHistoryItem({newHistoryItem: {description: "Dinos loaded successfully"}}),
+                HistoryActions.addHistoryItem({newHistoryItem: {
+                  description: "Dinos loaded successfully"
+                }}),
                 NotificationActions.showNotificationItem({
                   notification: {
                     message: "Dinos loaded successfully",
@@ -64,7 +66,10 @@ export class DinoEffects {
           switchMap((dinoResponse: Dino) =>
             [
               DinoActions.getDinoByIdSuccess({dinoSelected: dinoResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {description: "Dino Selected"}})
+              HistoryActions.addHistoryItem({newHistoryItem: {
+                description: "Dino Selected",
+                dinoReference: dinoResponse.id
+              }})
             ],
           ),
           catchError(error => of(error).pipe(
@@ -92,7 +97,10 @@ export class DinoEffects {
           switchMap((dinoResponse: Dino) =>
             [
               DinoActions.createNewDinoSuccess({newDino: dinoResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {description: "Added dinosaur to your collection"}}),
+              HistoryActions.addHistoryItem({newHistoryItem: {
+                description: "Added dinosaur to your collection",
+                dinoReference: dinoResponse.id
+              }}),
               NotificationActions.showNotificationItem({
                 notification: {
                   message: "Added dinosaur to your collection",
@@ -126,7 +134,10 @@ export class DinoEffects {
           exhaustMap((dinoResponse: Dino) =>
             [
               DinoActions.updateDinoSuccess({updatedDino: dinoResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {description: "Updated dinosaur"}}),
+              HistoryActions.addHistoryItem({newHistoryItem: {
+                description: "Updated dinosaur",
+                dinoReference: dinoResponse.id
+              }}),
               NotificationActions.showNotificationItem({
                 notification: {
                   message: "Updated dinosaur",
@@ -160,7 +171,10 @@ export class DinoEffects {
           exhaustMap((response: any) =>
             [
               DinoActions.deleteDinoSuccess({deletedDinoId: deletedDinoId}),
-              HistoryActions.addHistoryItem({newHistoryItem: {description: "Deleted dinosaur from your collection"}}),
+              HistoryActions.addHistoryItem({newHistoryItem: {
+                description: "Deleted dinosaur from your collection",
+                dinoReference: deletedDinoId
+              }}),
               NotificationActions.showNotificationItem({
                 notification: {
                   message: "Deleted dinosaur from your collection",

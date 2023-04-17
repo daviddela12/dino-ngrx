@@ -1,7 +1,23 @@
 <h1 class="title">History User Actions</h1>
-<article *ngFor="let historyRecord of historyCollection$ | async" class="message is-dark">
+<article *ngFor="let historyRecord of historyCollection$ | async" class="message is-link">
   <div class="message-body">
     {{historyRecord.description}}
+    <article *ngIf="historyRecord.dinoModel" class="media pt-5">
+      <figure class="media-left">
+        <p class="image is-128x128">
+          <img class="is-rounded" src="{{historyRecord.dinoModel.image}}">
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong>{{historyRecord.dinoModel.name}}</strong>
+            <br>
+            {{historyRecord.dinoModel.description}}
+          </p>
+        </div>
+      </div>
+    </article>
   </div>
 </article>
 
