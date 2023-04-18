@@ -37,7 +37,8 @@ export const dinoFeature = createFeature({
     on(DinoActions.updateDinoSuccess, (state, {updatedDino}) => ({
       ...state,
       dinoCollection: state.dinoCollection.map(
-        dino => dino.id === updatedDino.id ? Object.assign({}, updatedDino) : dino),
+        dino => dino.id === updatedDino.id ? {...dino, ...updatedDino} : dino),
+      // ANOTHER WAY TO UPDATE DINO Object.assign({}, updatedDino)
       loadingDino: false
     })),
 
