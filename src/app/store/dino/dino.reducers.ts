@@ -9,15 +9,13 @@ export const dinoFeature = createFeature({
     initialState,
     on(DinoActions.loadDinos, (state) => ({
       ...state,
-      loadingDino: true,
-      errorDino: null
+      loadingDino: true
     })),
 
     on(DinoActions.loadDinosSuccess, (state, {dinoCollection}) => ({
       ...state,
       loadingDino: false,
-      dinoCollection,
-      errorDino: null
+      dinoCollection: dinoCollection
     })),
 
     on(DinoActions.createNewDinoSuccess, (state, {newDino}) => ({
@@ -27,8 +25,7 @@ export const dinoFeature = createFeature({
 
     on(DinoActions.getDinoById, DinoActions.updateDino, DinoActions.deleteDino, (state) => ({
       ...state,
-      loadingDino: true,
-      errorDino: null
+      loadingDino: true
     })),
 
     on(DinoActions.getDinoByIdSuccess, (state, {dinoSelected}) => ({
@@ -39,7 +36,8 @@ export const dinoFeature = createFeature({
 
     on(DinoActions.updateDinoSuccess, (state, {updatedDino}) => ({
       ...state,
-      dinoCollection: state.dinoCollection.map(dino => dino.id === updatedDino.id ? Object.assign({}, updatedDino) : dino),
+      dinoCollection: state.dinoCollection.map(
+        dino => dino.id === updatedDino.id ? Object.assign({}, updatedDino) : dino),
       loadingDino: false
     })),
 
@@ -47,13 +45,6 @@ export const dinoFeature = createFeature({
         ...state,
         loadingDino: false,
         dinoCollection: state.dinoCollection.filter((dino: Dino) => dino.id !== deletedDinoId)
-    })),
-
-    on(DinoActions.dinosError, (state, {error}) => ({
-      ...state,
-      loadingDino: false,
-      dinoCollection: [],
-      errorDino: error
     }))
   )
 });

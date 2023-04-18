@@ -18,7 +18,5 @@ export const DinoActions = createActionGroup({
 
     'Delete Dino': props<{deletedDinoId: number}>(),
     'Delete Dino Success': props<{deletedDinoId: number}>(),
-
-    'Dinos Error': props<{error: any}>()
   }
 })
