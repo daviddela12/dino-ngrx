@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {AppState} from "../../store";
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {Notification} from "../../store/notification/notification.model";
@@ -15,7 +14,7 @@ export class NotificationComponent {
 
   notification$: Observable<Notification> = new Observable<Notification>();
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store) {
     this.notification$ = this.store.pipe(select(notificationFeature.selectNotification));
   }
 

@@ -9,7 +9,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {HttpClientModule} from "@angular/common/http";
 import { EffectsModule } from '@ngrx/effects';
-import {Item2Module} from "./components/item2/item2.module";
 import { LoadingComponent } from './components/loading/loading.component';
 import { DinoCardComponent } from './components/dino-card/dino-card.component';
 import {DinoModule} from "./store/dino/dino.module";
@@ -19,8 +18,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { HistoryComponent } from './components/history/history.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {AppReducers} from "./store";
 import {NotificationModule} from "./store/history/notification.module";
+import {AppReducers} from "./store";
 
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import {NotificationModule} from "./store/history/notification.module";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    Item2Module,
     DinoModule,
     NotificationModule,
     StoreModule.forRoot(AppReducers),

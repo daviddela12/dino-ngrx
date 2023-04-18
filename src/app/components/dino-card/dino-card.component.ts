@@ -5,8 +5,7 @@ import {DinoActions} from "../../store/dino/dino.actions";
 
 @Component({
   selector: 'app-dino-card',
-  templateUrl: './dino-card.component.html',
-  styleUrls: ['./dino-card.component.scss']
+  templateUrl: './dino-card.component.html'
 })
 export class DinoCardComponent implements OnInit {
 
@@ -17,7 +16,9 @@ export class DinoCardComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteDino(dinoId: number) {
-    this.store.dispatch(DinoActions.deleteDino({deletedDinoId: dinoId}));
+    if(confirm("Are you sure to delete this dinosaur from your collection?")) {
+      this.store.dispatch(DinoActions.deleteDino({deletedDinoId: dinoId}));
+    }
   }
 
 }

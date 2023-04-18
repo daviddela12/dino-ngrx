@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {ItemSelectors} from "../item/item.selectors";
 import {Observable} from "rxjs";
 import {dinoFeature} from "../../store/dino/dino.reducers";
 

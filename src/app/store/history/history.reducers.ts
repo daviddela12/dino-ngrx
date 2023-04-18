@@ -1,6 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 import {HistoryActions} from "./history.actions";
-import {HistoryState, initialState} from "./history.state";
+import {initialState} from "./history.state";
 
 export const historyReducer = createReducer(
   initialState,

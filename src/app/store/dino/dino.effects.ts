@@ -5,7 +5,7 @@ import {catchError, exhaustMap, switchMap, tap} from "rxjs/operators";
 import {DinoActions} from "./dino.actions";
 import {Dino} from "./dino.model";
 import {HistoryActions} from "../history/history.actions";
-import {mergeMap, of} from "rxjs";
+import {of} from "rxjs";
 import {NotificationActions} from "../notification/notification.actions";
 
 @Injectable()

@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {delay, map, mergeAll, mergeMap, Observable, of, take, throwError} from "rxjs";
-import {Item2} from "../components/item2/item2.model";
-import {catchError, tap} from "rxjs/operators";
-import {HandleErrorsService} from "./handle-errors.service";
+import {delay, map, Observable, throwError} from "rxjs";
 import {Dino} from "../store/dino/dino.model";
 
 @Injectable({
@@ -15,24 +12,7 @@ export class DinoService {
   private readonly delayMid = 1500;
   private readonly delayHig = 2500;
 
-  constructor(private httpClient: HttpClient, private handleErrorService: HandleErrorsService) { }
-
-  getDinos(): Observable<any> {
-    return this.httpClient.get(this.url).pipe(
-      delay(this.delayLow)
-    );
-  }
-
-  /** Observable mapping with the response we want to. In this case, Item2 **/
-  getDinos2(): Observable<Item2[]> {
-    return this.httpClient.get<Item2[]>(this.url).pipe(
-      map(response => response.map(obj => ({
-        name: obj.name
-      }))),
-      delay(this.delayMid),
-      catchError(this.handleErrorService.handleError<Item2[]>('getDinos2', []))
-    );
-  }
+  constructor(private httpClient: HttpClient) { }
 
   getDinoCollection(): Observable<Dino[]> {
     const randomTrue = 1; // Math.round(Math.random());

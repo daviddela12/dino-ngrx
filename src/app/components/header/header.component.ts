@@ -1,11 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {AppState} from "../../store";
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
-import {Dino} from "../../store/dino/dino.model";
-import {dinoFeature} from "../../store/dino/dino.reducers";
-import {History} from "../../store/history/history.model";
-import {HistorySelectors} from "../../store/history/history.selectors";
+import {historySelectors} from "../../store/history/history.selectors";
 
 @Component({
   selector: 'app-header',
@@ -18,8 +14,8 @@ export class HeaderComponent {
 
   historyCollection$: Observable<number> = new Observable<number>();
 
-  constructor(private store: Store<AppState>) {
-    this.historyCollection$ = this.store.pipe(select(HistorySelectors.historyCollectionCountSelector))
+  constructor(private store: Store) {
+    this.historyCollection$ = this.store.pipe(select(historySelectors.historyCollectionCountSelector))
   }
 
   toggleNavbar() {

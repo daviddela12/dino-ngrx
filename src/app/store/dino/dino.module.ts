@@ -1,4 +1,4 @@
-import {StoreFeatureModule, StoreModule} from "@ngrx/store";
+import {StoreModule} from "@ngrx/store";
 import {NgModule} from "@angular/core";
 import {dinoFeature} from "./dino.reducers";
 import {EffectsModule} from "@ngrx/effects";

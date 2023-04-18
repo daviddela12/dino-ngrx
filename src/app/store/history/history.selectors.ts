@@ -25,7 +25,7 @@ const historyCollectionCountSelector = createSelector(
   (state) => state.length
 )
 
-export const HistorySelectors = {
+export const historySelectors = {
   historyStateSelector,
   historyCollectionSelector,
   historyCollectionFullSelector,

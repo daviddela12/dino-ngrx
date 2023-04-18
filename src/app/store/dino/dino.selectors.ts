@@ -7,10 +7,3 @@ export const selectDinoById = (dinoId: number) => createSelector(
   (state: Dino[]) =>
     state.find((dino) => dino.id === dinoId)
 );
-
-const {
-  name,
-  reducer,
-  selectDinoCollection, // type: MemoizedSelector<Record<string, any>, Product[]>
-  selectLoadingDino, // type: MemoizedSelector<Record<string, any>, string | null>
-} = dinoFeature;
