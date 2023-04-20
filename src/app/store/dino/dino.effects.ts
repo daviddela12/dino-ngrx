@@ -69,7 +69,13 @@ export class DinoEffects {
               HistoryActions.addHistoryItem({newHistoryItem: {
                 description: "Dino Selected",
                 dinoReference: dinoResponse.id
-              }})
+              }}),
+              NotificationActions.showNotificationItem({
+                notification: {
+                  message: "Select the dinosaur",
+                  type: "INFO"
+                }
+              })
             ],
           ),
           catchError(error => of(error).pipe(

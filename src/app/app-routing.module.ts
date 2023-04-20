@@ -7,13 +7,14 @@ import {HistoryComponent} from "./components/history/history.component";
 const routes: Routes = [
   { path: '', redirectTo: '/dino-list', pathMatch: 'full' },
   { path: 'dino-list', component: DinoWrapperComponent},
-  { path: 'dino-details',
+  {
+    path: 'dino-details',
     children: [
-      { path: '', component: DinoDetailsComponent },
-      { path: ':dinoId', component: DinoDetailsComponent }
+      {path: '', component: DinoDetailsComponent},
+      {path: ':dinoId', component: DinoDetailsComponent}
     ]
   },
-  { path: 'history', component: HistoryComponent},
+  { path: 'history', component: HistoryComponent },
 ];
 
 @NgModule({

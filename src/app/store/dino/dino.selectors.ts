@@ -1,9 +1,22 @@
 import {dinoFeature} from "./dino.reducers";
 import {createSelector} from "@ngrx/store";
-import {Dino} from "./dino.model";
+import {dinoAdapter} from "./dino.state";
 
-export const selectDinoById = (dinoId: number) => createSelector(
-  dinoFeature.selectDinoCollection,
-  (state: Dino[]) =>
-    state.find((dino) => dino.id === dinoId)
+const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = dinoAdapter.getSelectors(dinoFeature.selectDinosState);
+
+const selectDinoById = (dinoId: number) => createSelector(
+  dinoFeature.selectEntities,
+  (state) => state[dinoId]
 );
+
+export const dinoSelectors = {
+  selectDinoById,
+  selectAll,
+  selectEntities,
+  selectIds
+}

@@ -4,6 +4,9 @@ import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {Dino} from "../../store/dino/dino.model";
 import {dinoFeature} from "../../store/dino/dino.reducers";
+import {dinoAdapter} from "../../store/dino/dino.state";
+import {dinoSelectors} from "../../store/dino/dino.selectors";
+import {EntityState} from "@ngrx/entity";
 
 @Component({
   selector: 'app-dino-wrapper',
@@ -22,7 +25,7 @@ export class DinoWrapperComponent implements OnInit {
   }
 
   private defineSelect() {
-    this.dinoCollection$ = this.store.pipe(select(dinoFeature.selectDinoCollection));
+    this.dinoCollection$ = this.store.pipe(select(dinoSelectors.selectAll));
   }
 
 }

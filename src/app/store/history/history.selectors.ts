@@ -1,6 +1,7 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
 import {HistoryState} from "./history.state";
 import {dinoFeature} from "../dino/dino.reducers";
+import {dinoSelectors} from "../dino/dino.selectors";
 
 const historyStateSelector = createFeatureSelector<HistoryState>("historyState")
 
@@ -11,11 +12,11 @@ const historyCollectionSelector = createSelector(
 
 const historyCollectionFullSelector = createSelector(
   historyStateSelector,
-  dinoFeature.selectDinoCollection,
+  dinoSelectors.selectEntities,
   (historyState, dinoState) => {
     return historyState.historyCollection.map((history) => ({
       ...history,
-      dinoModel: dinoState.find((dino) => history.dinoReference === dino.id)
+      dinoModel: dinoState[history.dinoReference]
     }))
   }
 );

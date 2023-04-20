@@ -18,8 +18,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { HistoryComponent } from './components/history/history.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {NotificationModule} from "./store/history/notification.module";
-import {AppReducers} from "./store";
+import {NotificationModule} from "./store/notification/notification.module";
+import {HistoryModule} from "./store/history/history.module";
 
 @NgModule({
   declarations: [
@@ -39,9 +39,9 @@ import {AppReducers} from "./store";
     HttpClientModule,
     ReactiveFormsModule,
     DinoModule,
+    HistoryModule,
     NotificationModule,
-    StoreModule.forRoot(AppReducers),
-    // StoreModule.forRoot({}),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot()
   ],

@@ -1,14 +1,29 @@
 import {Dino} from "./dino.model";
+import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
 
-export interface DinoState {
-  dinoCollection: Dino[];
-  dinoSelected: Dino;
+// STEP 1
+export const dinoAdapter: EntityAdapter<Dino> = createEntityAdapter<Dino>({
+  selectId: selectDinoId,
+  sortComparer: sortByUpdateDate
+});
+
+// STEP 2
+export interface DinoState extends EntityState<Dino>{
+  dinoSelected: number;
   loadingDino: boolean;
 }
 
-// 1 Initial State
-export const initialState: DinoState = {
-  dinoCollection: [],
+function sortByUpdateDate(a: Dino, b: Dino): number {
+  return new Date(b.date_updated).getTime() - new Date(a.date_updated).getTime()
+}
+
+function selectDinoId(a: Dino): number {
+  //In this case this would be optional since primary key is id
+  return a.id;
+}
+
+
+export const initialState: DinoState = dinoAdapter.getInitialState({
   dinoSelected: null,
   loadingDino: false
-}
+});

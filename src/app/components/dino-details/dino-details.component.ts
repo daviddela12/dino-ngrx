@@ -5,6 +5,7 @@ import {DinoActions} from "../../store/dino/dino.actions";
 import {Dino} from "../../store/dino/dino.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {dinoFeature} from "../../store/dino/dino.reducers";
+import {dinoSelectors} from "../../store/dino/dino.selectors";
 
 @Component({
   selector: 'app-dino-details',
@@ -17,17 +18,17 @@ export class DinoDetailsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private store: Store,
-              private route: ActivatedRoute,
+              private activateRoute: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
-    this.dinoId = Number(this.route.snapshot.params['dinoId']);
+    this.dinoId = Number(this.activateRoute.snapshot.params['dinoId']);
     if (this.dinoId) {
       this.store.dispatch(DinoActions.getDinoById({dinoId: this.dinoId}));
 
       this.store.pipe(
-        select(dinoFeature.selectDinoSelected)
+        select(dinoSelectors.selectDinoById(this.dinoId))
       ).subscribe((dinoResponse: Dino) => {
           if (dinoResponse) {
             this.dino = dinoResponse;
