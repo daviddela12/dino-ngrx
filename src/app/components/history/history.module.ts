@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {StoreModule} from "@ngrx/store";
-import {historyFeature} from "./history.reducers";
+import {historyFeature} from "../../store/history/history.reducers";
 
 @NgModule({
   imports: [

@@ -19,7 +19,7 @@ import { HistoryComponent } from './components/history/history.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {NotificationModule} from "./store/notification/notification.module";
-import {HistoryModule} from "./store/history/history.module";
+import {HistoryModule} from "./components/history/history.module";
 
 @NgModule({
   declarations: [
