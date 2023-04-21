@@ -11,8 +11,16 @@
       "id": 23,
       "name": "Velociraptor",
       "image": "assets/images/dinos/2.png",
-      "description": "dfadfdfas",
-      "date_updated": "2023-04-20T16:57:21.359Z"
+      "description": "pepin",
+      "date_updated": "2023-04-21T15:33:45.445Z"
+    },
+    {
+      "id": 24,
+      "name": "fdasdf",
+      "image": "assets/images/dinos/5.png",
+      "description": "dfasdf",
+      "date_updated": "2023-04-21T15:38:34.729Z",
+      "date_created": "2023-04-21T15:38:34.729Z"
     }
   ]
 }

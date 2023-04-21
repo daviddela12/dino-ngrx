@@ -1,5 +1,6 @@
 import {Dino} from "./dino.model";
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
+import {storage} from "../storage";
 
 // STEP 1
 export const dinoAdapter: EntityAdapter<Dino> = createEntityAdapter<Dino>({
@@ -24,6 +25,8 @@ function selectDinoId(a: Dino): number {
 
 
 export const initialState: DinoState = dinoAdapter.getInitialState({
+  ids: storage.getItem("dino").ids,
+  entities: storage.getItem("dino").entities,
   dinoSelected: null,
   loadingDino: false
 });
