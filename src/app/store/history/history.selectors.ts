@@ -3,7 +3,7 @@ import {HistoryState} from "./history.state";
 import {dinoFeature} from "../dino/dino.reducers";
 import {dinoSelectors} from "../dino/dino.selectors";
 
-const historyStateSelector = createFeatureSelector<HistoryState>("historyState")
+const historyStateSelector = createFeatureSelector<HistoryState>("history")
 
 const historyCollectionSelector = createSelector(
   historyStateSelector,

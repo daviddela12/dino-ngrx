@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
-import {DinoActions} from "../../store/dino/dino.actions";
-import {Dino} from "../../store/dino/dino.model";
+import {DinoActions} from "../../../store/dino/dino.actions";
+import {Dino} from "../../../store/dino/dino.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {dinoFeature} from "../../store/dino/dino.reducers";
-import {dinoSelectors} from "../../store/dino/dino.selectors";
+import {dinoFeature} from "../../../store/dino/dino.reducers";
+import {dinoSelectors} from "../../../store/dino/dino.selectors";
 
 @Component({
   selector: 'app-dino-details',

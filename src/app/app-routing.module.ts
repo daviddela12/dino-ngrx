@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {DinoWrapperComponent} from "./components/dino-wrapper/dino-wrapper.component";
-import {DinoDetailsComponent} from "./components/dino-details/dino-details.component";
+import {DinoWrapperComponent} from "./components/dino/dino-wrapper/dino-wrapper.component";
+import {DinoDetailsComponent} from "./components/dino/dino-details/dino-details.component";
 import {HistoryComponent} from "./components/history/history.component";
 
 const routes: Routes = [

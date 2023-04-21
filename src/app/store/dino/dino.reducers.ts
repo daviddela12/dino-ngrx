@@ -1,10 +1,9 @@
 import {createFeature, createReducer, on} from "@ngrx/store";
 import {dinoAdapter, initialState} from "./dino.state";
 import {DinoActions} from "./dino.actions";
-import {Dino} from "./dino.model";
 
 export const dinoFeature = createFeature({
-  name: "dinos",
+  name: "dino",
   reducer: createReducer(
     initialState,
     on(DinoActions.loadDinos, (state) => ({

@@ -24,6 +24,7 @@
     "@ngrx/store": "^13.2.0",
     "@ngrx/store-devtools": "^13.2.0",
     "bulma": "^0.9.4",
+    "ngrx-store-localstorage": "^13.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

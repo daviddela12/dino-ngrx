@@ -1,8 +1,8 @@
 import {StoreModule} from "@ngrx/store";
 import {NgModule} from "@angular/core";
-import {dinoFeature} from "./dino.reducers";
+import {dinoFeature} from "../../store/dino/dino.reducers";
 import {EffectsModule} from "@ngrx/effects";
-import {DinoEffects} from "./dino.effects";
+import {DinoEffects} from "../../store/dino/dino.effects";
 
 @NgModule({
   imports: [

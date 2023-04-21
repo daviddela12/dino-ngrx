@@ -3,7 +3,7 @@ import {HistoryActions} from "./history.actions";
 import {initialState} from "./history.state";
 
 export const historyFeature = createFeature( {
-  name: "historyState",
+  name: "history",
   reducer: createReducer(
     initialState,
     on(HistoryActions.addHistoryItem, (state, {newHistoryItem}) => ({

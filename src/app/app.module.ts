@@ -10,16 +10,17 @@ import { environment } from '../environments/environment';
 import {HttpClientModule} from "@angular/common/http";
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingComponent } from './components/loading/loading.component';
-import { DinoCardComponent } from './components/dino-card/dino-card.component';
-import {DinoModule} from "./store/dino/dino.module";
-import { DinoWrapperComponent } from './components/dino-wrapper/dino-wrapper.component';
-import { DinoDetailsComponent } from './components/dino-details/dino-details.component';
+import { DinoCardComponent } from './components/dino/dino-wrapper/dino-card/dino-card.component';
+import {DinoModule} from "./components/dino/dino.module";
+import { DinoWrapperComponent } from './components/dino/dino-wrapper/dino-wrapper.component';
+import { DinoDetailsComponent } from './components/dino/dino-details/dino-details.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { HistoryComponent } from './components/history/history.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {NotificationModule} from "./store/notification/notification.module";
+import {NotificationModule} from "./components/notification/notification.module";
 import {HistoryModule} from "./components/history/history.module";
+import {metaReducers} from "./store";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import {HistoryModule} from "./components/history/history.module";
     DinoModule,
     HistoryModule,
     NotificationModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({}, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot()
   ],

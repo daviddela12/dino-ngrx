@@ -7,7 +7,7 @@ const {
   selectEntities,
   selectAll,
   selectTotal,
-} = dinoAdapter.getSelectors(dinoFeature.selectDinosState);
+} = dinoAdapter.getSelectors(dinoFeature.selectDinoState);
 
 const selectDinoById = (dinoId: number) => createSelector(
   dinoFeature.selectEntities,
