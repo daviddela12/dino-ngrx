@@ -1,7 +1,7 @@
 import {ActionReducerMap} from "@ngrx/store";
 import {HistoryState} from "./history/history.state";
-import {historyReducer} from "./history/history.reducers";
 
+/**
 // Fuente de la verdad
 export interface AppState {
   historyState: HistoryState
@@ -11,3 +11,4 @@ export interface AppState {
 export const AppReducers: ActionReducerMap<AppState> = {
   historyState: historyReducer
 }
+ **/

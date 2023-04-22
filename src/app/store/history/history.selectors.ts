@@ -1,33 +1,25 @@
-import {createFeatureSelector, createSelector} from "@ngrx/store";
-import {HistoryState} from "./history.state";
+import {createSelector} from "@ngrx/store";
 import {dinoFeature} from "../dino/dino.reducers";
+import {historyFeature} from "./history.reducers";
 
-const historyStateSelector = createFeatureSelector<HistoryState>("historyState")
-
-const historyCollectionSelector = createSelector(
-  historyStateSelector,
-  (state) => state.historyCollection
-);
 
 const historyCollectionFullSelector = createSelector(
-  historyStateSelector,
+  historyFeature.selectHistoryCollection,
   dinoFeature.selectDinoCollection,
-  (historyState, dinoState) => {
-    return historyState.historyCollection.map((history) => ({
+  (historyCollection, dinoCollection) => {
+    return historyCollection.map((history) => ({
       ...history,
-      dinoModel: dinoState.find((dino) => history.dinoReference === dino.id)
+      dinoModel: dinoCollection.find((dino) => history.dinoReference === dino.id)
     }))
   }
 );
 
 const historyCollectionCountSelector = createSelector(
-  historyCollectionSelector,
+  historyFeature.selectHistoryCollection,
   (state) => state.length
 )
 
 export const historySelectors = {
-  historyStateSelector,
-  historyCollectionSelector,
   historyCollectionFullSelector,
   historyCollectionCountSelector
 }

@@ -3,7 +3,7 @@ import {initialState} from "./notification.state";
 import {NotificationActions} from "./notification.actions";
 
 export const notificationFeature = createFeature({
-  name: "notificationState",
+  name: "notification",
   reducer: createReducer(
     initialState,
     on(NotificationActions.showNotificationItem, (state, {notification}) => ({

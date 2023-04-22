@@ -4,7 +4,7 @@ import {DinoActions} from "./dino.actions";
 import {Dino} from "./dino.model";
 
 export const dinoFeature = createFeature({
-  name: "dinoState",
+  name: "dino",
   reducer: createReducer(
     initialState,
     on(DinoActions.loadDinos, (state) => ({
