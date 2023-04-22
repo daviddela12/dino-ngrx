@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Dino} from "../../store/dino/dino.model";
+import {Dino} from "../../../../store/dino/dino.model";
 import {Store} from "@ngrx/store";
-import {DinoActions} from "../../store/dino/dino.actions";
+import {DinoActions} from "../../../../store/dino/dino.actions";
 
 @Component({
   selector: 'app-dino-card',

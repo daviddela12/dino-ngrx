@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {DinoActions} from "../../store/dino/dino.actions";
+import {DinoActions} from "../../../store/dino/dino.actions";
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
-import {Dino} from "../../store/dino/dino.model";
-import {dinoFeature} from "../../store/dino/dino.reducers";
+import {Dino} from "../../../store/dino/dino.model";
+import {dinoFeature} from "../../../store/dino/dino.reducers";
 
 @Component({
   selector: 'app-dino-wrapper',
