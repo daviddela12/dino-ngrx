@@ -1,21 +1,13 @@
-const getThisState = (stateName: string) => {
-  try{
+const getItem = (stateName: string) => {
+  try {
     const serializedState = localStorage.getItem(stateName);
-    if(serializedState === null){ return undefined }
+    if(serializedState === null){ return [] }
     return JSON.parse(serializedState);
-  }catch(err){
-    return undefined
+  } catch(err) {
+    return []
   }
 }
 
-const getItem = (itemName: string) => {
-  const items = getThisState(itemName)
-  if (items === undefined) {
-    return []
-  } else {
-    return items
-  }
-}
 /**
 const saveItem = (key: string, data: any) => {
   const serializedState = JSON.stringify(data);
@@ -51,7 +43,6 @@ const clearStorage = () => localStorage.clear();
 
 
 export const storage = {
-  getThisState,
   getItem,
 /**  saveItem,
   getItemByKey,

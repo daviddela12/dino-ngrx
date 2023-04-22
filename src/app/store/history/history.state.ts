@@ -5,6 +5,8 @@ export interface HistoryState {
   historyCollection: History[]
 }
 
+const historyStorage: HistoryState = storage.getItem("history");
+
 export const initialState: HistoryState = {
-  historyCollection: storage.getItem("history").historyCollection
+  historyCollection: historyStorage.historyCollection ? historyStorage.historyCollection : []
 }

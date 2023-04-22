@@ -13,6 +13,7 @@ export const AppReducers: ActionReducerMap<AppState> = {
   historyState: historyReducer
 }
 **/
+
 const reducerKeys = ['dino', 'history'];
 function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({keys: reducerKeys})(reducer);

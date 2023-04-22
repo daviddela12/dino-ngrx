@@ -23,10 +23,11 @@ function selectDinoId(a: Dino): number {
   return a.id;
 }
 
+const dinoStorage: DinoState = storage.getItem("dino");
 
 export const initialState: DinoState = dinoAdapter.getInitialState({
-  ids: storage.getItem("dino").ids,
-  entities: storage.getItem("dino").entities,
+  ids: dinoStorage.ids ? dinoStorage.ids : [],
+  entities: dinoStorage.entities ? dinoStorage.entities : [],
   dinoSelected: null,
   loadingDino: false
 });
