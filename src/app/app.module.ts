@@ -11,15 +11,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DinoCardComponent } from './components/dino-card/dino-card.component';
-import {DinoModule} from "./store/dino/dino.module";
+
 import { DinoWrapperComponent } from './components/dino-wrapper/dino-wrapper.component';
 import { DinoDetailsComponent } from './components/dino-details/dino-details.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { HistoryComponent } from './components/history/history.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {NotificationModule} from "./store/history/notification.module";
 import {AppReducers} from "./store";
+import {DinoEffects} from "./store/dino/dino.effects";
 
 @NgModule({
   declarations: [
@@ -38,12 +38,9 @@ import {AppReducers} from "./store";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DinoModule,
-    NotificationModule,
     StoreModule.forRoot(AppReducers),
-    // StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot()
+    EffectsModule.forRoot([DinoEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

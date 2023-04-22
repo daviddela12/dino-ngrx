@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {Notification} from "../../store/notification/notification.model";
-import {notificationFeature} from "../../store/notification/notification.reducers";
 import {NotificationActions} from "../../store/notification/notification.actions";
+import {notificationSelectors} from "../../store/notification/notification.selectors";
 
 @Component({
   selector: 'app-notification',
@@ -15,7 +15,7 @@ export class NotificationComponent {
   notification$: Observable<Notification> = new Observable<Notification>();
 
   constructor(private store: Store) {
-    this.notification$ = this.store.pipe(select(notificationFeature.selectNotification));
+    this.notification$ = this.store.pipe(select(notificationSelectors.notificationSelector));
   }
 
   deleteNotification() {

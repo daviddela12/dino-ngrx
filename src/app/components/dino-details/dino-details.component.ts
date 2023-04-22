@@ -4,7 +4,7 @@ import {select, Store} from "@ngrx/store";
 import {DinoActions} from "../../store/dino/dino.actions";
 import {Dino} from "../../store/dino/dino.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {dinoFeature} from "../../store/dino/dino.reducers";
+import {dinoSelectors} from "../../store/dino/dino.selectors";
 
 @Component({
   selector: 'app-dino-details',
@@ -27,7 +27,8 @@ export class DinoDetailsComponent implements OnInit {
       this.store.dispatch(DinoActions.getDinoById({dinoId: this.dinoId}));
 
       this.store.pipe(
-        select(dinoFeature.selectDinoSelected)
+        select(dinoSelectors.dinoSelectedSelector)
+        // select(dinoSelectors.selectDinoById(this.dinoId)) LO COGE DEL COLLECTION POR LO QUE AL REFRESCAR LA PANTALLA APARECE VACIO
       ).subscribe((dinoResponse: Dino) => {
           if (dinoResponse) {
             this.dino = dinoResponse;

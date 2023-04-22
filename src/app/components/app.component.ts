@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
-import {dinoFeature} from "../store/dino/dino.reducers";
+import {dinoSelectors} from "../store/dino/dino.selectors";
 
 @Component({
   selector: 'app-root',
@@ -26,6 +26,6 @@ export class AppComponent implements OnInit {
   }
 
   private defineSelect() {
-    this.loadingDino$ = this.store.pipe(select(dinoFeature.selectLoadingDino));
+    this.loadingDino$ = this.store.pipe(select(dinoSelectors.dinoLoadingSelector));
   }
 }

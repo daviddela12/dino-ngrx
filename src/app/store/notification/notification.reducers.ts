@@ -1,10 +1,8 @@
-import {createFeature, createReducer, on} from "@ngrx/store";
+import { createReducer, on} from "@ngrx/store";
 import {initialState} from "./notification.state";
 import {NotificationActions} from "./notification.actions";
 
-export const notificationFeature = createFeature({
-  name: "notificationState",
-  reducer: createReducer(
+export const notificationReducer = createReducer(
     initialState,
     on(NotificationActions.showNotificationItem, (state, {notification}) => ({
       ...state,
@@ -15,5 +13,4 @@ export const notificationFeature = createFeature({
       ...state,
       notification: null
     }))
-  )
-});
+  );

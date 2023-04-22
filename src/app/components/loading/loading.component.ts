@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
-import {dinoFeature} from "../../store/dino/dino.reducers";
+import {dinoSelectors} from "../../store/dino/dino.selectors";
 
 @Component({
   selector: 'app-loading',
@@ -15,7 +15,7 @@ export class LoadingComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.loadingDino$ = this.store.pipe(select(dinoFeature.selectLoadingDino));
+    this.loadingDino$ = this.store.pipe(select(dinoSelectors.dinoLoadingSelector));
   }
 
 }
