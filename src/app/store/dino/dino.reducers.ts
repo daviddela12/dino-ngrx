@@ -47,6 +47,11 @@ export const dinoFeature = createFeature({
           ...state,
           loadingDino: false
       })
-    })
+    }),
+
+    on(DinoActions.failureDino, (state) => ({
+      ...state,
+      loadingDino: false
+    }))
   )
 });

@@ -49,7 +49,8 @@ export class DinoEffects {
                       message: error,
                       type: "ERROR"
                     }
-                  })
+                  }),
+                  DinoActions.failureDino()
                 ];
               }
             )
