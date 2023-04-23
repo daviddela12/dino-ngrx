@@ -44,5 +44,10 @@ export const dinoReducer = createReducer(
         ...state,
         loadingDino: false,
         dinoCollection: state.dinoCollection.filter((dino: Dino) => dino.id !== deletedDinoId)
+    })),
+
+    on(DinoActions.failureDino, (state) => ({
+      ...state,
+      loadingDino: false
     }))
   );

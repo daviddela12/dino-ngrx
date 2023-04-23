@@ -15,7 +15,7 @@ export class DinoService {
   constructor(private httpClient: HttpClient) { }
 
   getDinoCollection(): Observable<Dino[]> {
-    const randomTrue = 1; // Math.round(Math.random());
+    const randomTrue = Math.round(Math.random());
     if (randomTrue) {
       return this.httpClient.get<Dino[]>(this.url).pipe(
         map(response => response.map(obj => ({
