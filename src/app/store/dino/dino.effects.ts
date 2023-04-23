@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {DinoService} from "../../services/dino.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {catchError, exhaustMap, switchMap, tap} from "rxjs/operators";
+import {catchError, concatMap, exhaustMap, mergeMap, switchMap, tap} from "rxjs/operators";
 import {DinoActions} from "./dino.actions";
 import {Dino} from "./dino.model";
 import {HistoryActions} from "../history/history.actions";
@@ -18,29 +18,22 @@ export class DinoEffects {
 
   loadDinosEffects$ = createEffect(() => this.actions$.pipe(
       ofType(DinoActions.loadDinos),
-      exhaustMap(() => {
+      switchMap(() => {
         return this.dinoService.getDinoCollection().pipe(
-          // FORMA 1
-          switchMap((dinosResponse: Dino[]) => {
-              return [
-                DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
-                HistoryActions.addHistoryItem({newHistoryItem: {
-                  description: "Dinos loaded successfully"
-                }}),
-                NotificationActions.showNotificationItem({
-                  notification: {
-                    message: "Dinos loaded successfully",
-                    type: "INFO"
-                  }
-                })
-              ];
-            },
+          switchMap((dinosResponse: Dino[]) =>
+            [
+              DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
+              HistoryActions.addHistoryItem({newHistoryItem: {
+                description: "Dinos loaded successfully"
+              }}),
+              NotificationActions.showNotificationItem({
+                notification: {
+                  message: "Dinos loaded successfully",
+                  type: "INFO"
+                }
+              })
+            ],
           ),
-          // FORMA 2
-/**          mergeMap((dinosResponse: Dino[]) => [
-            DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
-            HistoryActions.addHistoryItem({newHistoryItem: {description: "Cargado listado de dinosaurios"}}),
-          ]),**/
           catchError(error => of(error).pipe(
             switchMap((error) => {
                 return [
@@ -61,7 +54,7 @@ export class DinoEffects {
 
   getDinoByIdEffects$ = createEffect(() => this.actions$.pipe(
       ofType(DinoActions.getDinoById),
-      exhaustMap(({dinoId}) => {
+      switchMap(({dinoId}) => {
         return this.dinoService.getDinoById(dinoId).pipe(
           switchMap((dinoResponse: Dino) =>
             [
@@ -92,7 +85,7 @@ export class DinoEffects {
 
   newDinoEffects$ = createEffect(() => this.actions$.pipe(
       ofType(DinoActions.createNewDino),
-      exhaustMap(({newDino}) => {
+      concatMap(({newDino}) => {
         return this.dinoService.addDino(newDino).pipe(
           switchMap((dinoResponse: Dino) =>
             [
@@ -129,7 +122,7 @@ export class DinoEffects {
 
   updateDinoEffects$ = createEffect(() => this.actions$.pipe(
       ofType(DinoActions.updateDino),
-      exhaustMap(({updatedDino}) => {
+      concatMap(({updatedDino}) => {
         return this.dinoService.updateDino(updatedDino).pipe(
           exhaustMap((dinoResponse: Dino) =>
             [
@@ -168,7 +161,7 @@ export class DinoEffects {
       ofType(DinoActions.deleteDino),
       exhaustMap(({deletedDinoId}) => {
         return this.dinoService.deleteDino(deletedDinoId).pipe(
-          exhaustMap((response: any) =>
+          switchMap((response: any) =>
             [
               DinoActions.deleteDinoSuccess({deletedDinoId: deletedDinoId}),
               HistoryActions.addHistoryItem({newHistoryItem: {
@@ -200,6 +193,4 @@ export class DinoEffects {
       })
     )
   );
-
-
 }
