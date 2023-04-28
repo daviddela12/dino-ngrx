@@ -12,7 +12,7 @@ import {NotificationActions} from "../../store/notification/notification.actions
 })
 export class NotificationComponent {
 
-  notification$: Observable<Notification> = new Observable<Notification>();
+  notification$: Observable<Notification>;
 
   constructor(private store: Store) {
     this.notification$ = this.store.pipe(select(notificationFeature.selectNotification));
