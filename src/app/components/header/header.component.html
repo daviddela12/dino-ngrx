@@ -4,6 +4,14 @@
       <!--<img src="assets/logo.png">-->
       <img src="assets/logo-2.svg">
     </a>
+    <div class="navbar-item navbar-notification">
+      <a [routerLink]="['/history']">
+            <span class="icon has-text-white">
+              <i class="fas fa-solid fa-bell"></i>
+            </span>
+      </a>
+      <span *ngIf="historyCollection$ | async as historyCounter" class="notification-badge">{{historyCounter}}</span>
+    </div>
     <a #navBurger (click)="toggleNavbar()" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -15,16 +23,6 @@
       <a class="navbar-item" routerLinkActive="has-background-success-light has-text-black" [routerLink]="['/dino-details']" >
         Add new dino
       </a>
-    </div>
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <a [routerLink]="['/history']">
-          <span class="icon has-text-white">
-            <i class="fas fa-solid fa-bell"></i>
-          </span>
-        </a>
-        <span *ngIf="historyCollection$ | async as historyCounter" class="notification-badge">{{historyCounter}}</span>
-      </div>
     </div>
   </div>
 </nav>

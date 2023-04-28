@@ -5,7 +5,8 @@ import {DinoActions} from "../../../../store/dino/dino.actions";
 
 @Component({
   selector: 'app-dino-card',
-  templateUrl: './dino-card.component.html'
+  templateUrl: './dino-card.component.html',
+  styleUrls: ['./dino-card.component.scss']
 })
 export class DinoCardComponent implements OnInit {
 
