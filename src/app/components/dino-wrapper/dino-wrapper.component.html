@@ -1,6 +1,13 @@
-<h1 class="title">Your Dino Collection</h1>
-<div class="columns is-desktop is-multiline">
-  <div class="column is-3" *ngFor="let dinoRecord of dinoCollection$ | async">
+<div class="columns">
+  <div class="column is-four-fifths">
+    <h1 class="title">Your Dino Collection</h1>
+  </div>
+  <div class="column is-one-fifth">
+    <a [routerLink]="['/dino-details']" class="button is-dark is-fullwidth">Add New Dino</a>
+  </div>
+</div>
+<div class="columns is-multiline">
+  <div class="column is-4-tablet is-3-desktop" *ngFor="let dinoRecord of dinoCollection$ | async">
     <app-dino-card [dino]="dinoRecord"></app-dino-card>
   </div>
 </div>
