@@ -1,6 +1,6 @@
 <div *ngIf="notification$ | async as notificationRecord" class="section notification-section" #notificationSection>
   <div class="notification is-link is-light"
-       [ngClass]="{'is-light': notificationRecord.type === 'INFO', 'is-danger': notificationRecord.type === 'ERROR'}">
+       [ngClass]="{'is-success': notificationRecord.type === 'INFO', 'is-danger': notificationRecord.type === 'ERROR'}">
     <button class="delete" (click)="deleteNotification()"></button>
     <strong>{{notificationRecord.message}}</strong>&nbsp;
   </div>
