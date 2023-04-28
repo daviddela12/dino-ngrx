@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Dino} from "../../../../store/dino/dino.model";
 import {Store} from "@ngrx/store";
 import {DinoActions} from "../../../../store/dino/dino.actions";
@@ -8,13 +8,11 @@ import {DinoActions} from "../../../../store/dino/dino.actions";
   templateUrl: './dino-card.component.html',
   styleUrls: ['./dino-card.component.scss']
 })
-export class DinoCardComponent implements OnInit {
+export class DinoCardComponent {
 
   @Input() dino: Dino;
 
   constructor(private store: Store) { }
-
-  ngOnInit(): void {}
 
   deleteDino(dinoId: number) {
     if(confirm("Are you sure to delete this dinosaur from your collection?")) {

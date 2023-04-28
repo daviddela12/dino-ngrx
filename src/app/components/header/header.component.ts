@@ -12,7 +12,7 @@ export class HeaderComponent {
   @ViewChild('navBurger') navBurger: ElementRef = {} as ElementRef;
   @ViewChild('navMenu') navMenu: ElementRef = {} as ElementRef;
 
-  historyCollection$: Observable<number> = new Observable<number>();
+  historyCollection$: Observable<number>;
 
   constructor(private store: Store) {
     this.historyCollection$ = this.store.pipe(select(historySelectors.historyCollectionCountSelector))
