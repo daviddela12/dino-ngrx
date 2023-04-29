@@ -21,7 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import {NotificationModule} from "./components/notification/notification.module";
 import {HistoryModule} from "./components/history/history.module";
 import {metaReducers} from "./store";
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     DinoModule,
     HistoryModule,
     NotificationModule,
-    StoreModule.forRoot({}, {metaReducers}),
+    StoreModule.forRoot({router: routerReducer}, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot(),
     StoreRouterConnectingModule.forRoot()

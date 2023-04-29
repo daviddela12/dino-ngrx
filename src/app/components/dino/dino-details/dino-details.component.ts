@@ -23,23 +23,18 @@ export class DinoDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this.dinoId = Number(this.activateRoute.snapshot.params['dinoId']);
-    if (this.dinoId) {
-      this.store.dispatch(DinoActions.getDinoById({dinoId: this.dinoId}));
-
-      this.store.pipe(
-        select(dinoSelectors.selectDinoById(this.dinoId))
-      ).subscribe((dinoResponse: Dino) => {
-          if (dinoResponse) {
-            this.dino = dinoResponse;
-            this.dinoForm.setValue({
-              id: dinoResponse.id,
-              name: dinoResponse.name,
-              description: dinoResponse.description
-            })
-          }
-      })
-    }
+    this.store.pipe(
+      select(dinoSelectors.selectDinoById)
+    ).subscribe((dinoResponse: Dino) => {
+        if (dinoResponse) {
+          this.dino = dinoResponse;
+          this.dinoForm.setValue({
+            id: dinoResponse.id,
+            name: dinoResponse.name,
+            description: dinoResponse.description
+          })
+        }
+    })
   }
 
   onSubmit() {

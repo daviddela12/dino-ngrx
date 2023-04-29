@@ -1,6 +1,8 @@
 import {dinoFeature} from "./dino.reducers";
 import {createSelector} from "@ngrx/store";
 import {dinoAdapter} from "./dino.state";
+import {selectRouteParam, selectRouteParams} from "../router.selectors";
+import {state} from "@angular/animations";
 
 const {
   selectIds,
@@ -9,9 +11,12 @@ const {
   selectTotal,
 } = dinoAdapter.getSelectors(dinoFeature.selectDinoState);
 
-const selectDinoById = (dinoId: number) => createSelector(
-  dinoFeature.selectEntities,
-  (state) => state[dinoId]
+const selectDinoById = createSelector(
+  selectEntities,
+  selectRouteParams,
+  (state, {dinoId}) => {
+    return state[dinoId]
+  }
 );
 
 export const dinoSelectors = {
