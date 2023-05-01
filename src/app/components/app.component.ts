@@ -12,10 +12,10 @@ export class AppComponent implements OnInit {
   loadingDino$: Observable<boolean> = new Observable<boolean>();
 
   constructor(private store: Store) {
+    this.loadingDino$ = this.store.pipe(select(dinoFeature.selectLoadingDino));
   }
 
   ngOnInit() {
-    this.defineSelect();
     /** YA NO SE LLAMA AQUI, SE LLAMA DESDE EL EFFECT
     this.dinoService.getDinos().subscribe((response) => {
       this.dinos = response;
@@ -23,9 +23,5 @@ export class AppComponent implements OnInit {
       console.log(this.dinos);
     })
      **/
-  }
-
-  private defineSelect() {
-    this.loadingDino$ = this.store.pipe(select(dinoFeature.selectLoadingDino));
   }
 }

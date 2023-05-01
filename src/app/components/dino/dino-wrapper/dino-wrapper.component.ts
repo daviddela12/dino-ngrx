@@ -14,15 +14,11 @@ export class DinoWrapperComponent implements OnInit {
   dinoCollection$: Observable<Dino[]> = new Observable<Dino[]>();
 
   constructor(private store: Store) {
+    this.dinoCollection$ = this.store.pipe(select(dinoFeature.selectDinoCollection));
   }
 
   ngOnInit(): void {
-    this.defineSelect();
     this.store.dispatch(DinoActions.loadDinos());
-  }
-
-  private defineSelect() {
-    this.dinoCollection$ = this.store.pipe(select(dinoFeature.selectDinoCollection));
   }
 
 }
