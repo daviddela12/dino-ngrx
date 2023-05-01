@@ -48,11 +48,12 @@ loadDinosEffects$ = createEffect(() => this.actions$.pipe(
 
   getDinoByIdEffects$ = createEffect(() => this.actions$.pipe(
     ofType("[Dino] "+EntityOp.QUERY_BY_KEY_SUCCESS),
+    // ofEntityType("Dino"),
+    // ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
     switchMap(() =>
         [
           HistoryActions.addHistoryItem({newHistoryItem: {
             description: "Dino Selected",
-            dinoReference: 3
           }}),
           NotificationActions.showNotificationItem({
             notification: {
@@ -62,120 +63,66 @@ loadDinosEffects$ = createEffect(() => this.actions$.pipe(
           })
         ],
       )
-    ),{dispatch: false}
+    ),
   );
-  /**
+
   newDinoEffects$ = createEffect(() => this.actions$.pipe(
-      ofType(DinoActions.createNewDino),
-      exhaustMap(({newDino}) => {
-        return this.dinoService.addDino(newDino).pipe(
-          switchMap((dinoResponse: Dino) =>
-            [
-              DinoActions.createNewDinoSuccess({newDino: dinoResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {
-                description: "Added dinosaur to your collection",
-                dinoReference: dinoResponse.id
-              }}),
-              NotificationActions.showNotificationItem({
-                notification: {
-                  message: "Added dinosaur to your collection",
-                  type: "INFO"
-                }
-              })
-            ],
-          ),
-          catchError(error => of(error).pipe(
-            switchMap((error) => {
-                return [
-                  NotificationActions.showNotificationItem({
-                    notification: {
-                      message: error,
-                      type: "ERROR"
-                    }
-                  })
-                ];
-              }
-            )
-          ))
-        )
-      })
-    )
+      ofType("[Dino] "+EntityOp.SAVE_ADD_ONE_SUCCESS),
+      // ofEntityType("Dino"),
+      // ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
+      switchMap(() =>
+        [
+          HistoryActions.addHistoryItem({newHistoryItem: {
+              description: "Added dinosaur to your collection",
+            }}),
+          NotificationActions.showNotificationItem({
+            notification: {
+              message: "Added dinosaur to your collection",
+              type: "INFO"
+            }
+          })
+        ],
+      )
+    ),
   );
 
   updateDinoEffects$ = createEffect(() => this.actions$.pipe(
-      ofType(DinoActions.updateDino),
-      exhaustMap(({updatedDino}) => {
-        return this.dinoService.updateDino(updatedDino).pipe(
-          exhaustMap((dinoResponse: Dino) =>
-            [
-              DinoActions.updateDinoSuccess({updatedDino: dinoResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {
-                description: "Updated dinosaur",
-                dinoReference: dinoResponse.id
-              }}),
-              NotificationActions.showNotificationItem({
-                notification: {
-                  message: "Updated dinosaur",
-                  type: "INFO"
-                }
-              })
-            ],
-          ),
-          catchError(error => of(error).pipe(
-            switchMap((error) => {
-                return [
-                  NotificationActions.showNotificationItem({
-                    notification: {
-                      message: error,
-                      type: "ERROR"
-                    }
-                  })
-                ];
-              }
-            )
-          ))
-        )
-      })
-    )
+      ofType("[Dino] "+EntityOp.SAVE_UPDATE_ONE_SUCCESS),
+      // ofEntityType("Dino"),
+      // ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
+      switchMap(() =>
+        [
+          HistoryActions.addHistoryItem({newHistoryItem: {
+              description: "Updated dinosaur",
+            }}),
+          NotificationActions.showNotificationItem({
+            notification: {
+              message: "Updated dinosaur",
+              type: "INFO"
+            }
+          })
+        ],
+      )
+    ),
   );
 
   deleteDinoEffects$ = createEffect(() => this.actions$.pipe(
-      ofType(DinoActions.deleteDino),
-      exhaustMap(({deletedDinoId}) => {
-        return this.dinoService.deleteDino(deletedDinoId).pipe(
-          exhaustMap((response: any) =>
-            [
-              DinoActions.deleteDinoSuccess({deletedDinoId: deletedDinoId}),
-              HistoryActions.addHistoryItem({newHistoryItem: {
-                description: "Deleted dinosaur from your collection",
-                dinoReference: deletedDinoId
-              }}),
-              NotificationActions.showNotificationItem({
-                notification: {
-                  message: "Deleted dinosaur from your collection",
-                  type: "INFO"
-                }
-              })
-            ],
-          ),
-          catchError(error => of(error).pipe(
-            switchMap((error) => {
-                return [
-                  NotificationActions.showNotificationItem({
-                    notification: {
-                      message: error,
-                      type: "ERROR"
-                    }
-                  })
-                ];
-              }
-            )
-          ))
-        )
-      })
-    )
+      ofType("[Dino] "+EntityOp.SAVE_DELETE_ONE_SUCCESS),
+      // ofEntityType("Dino"),
+      // ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
+      switchMap(() =>
+        [
+          HistoryActions.addHistoryItem({newHistoryItem: {
+              description: "Deleted dinosaur from your collection",
+            }}),
+          NotificationActions.showNotificationItem({
+            notification: {
+              message: "Deleted dinosaur from your collection",
+              type: "INFO"
+            }
+          })
+        ],
+      )
+    ),
   );
-**/
-
-
 }

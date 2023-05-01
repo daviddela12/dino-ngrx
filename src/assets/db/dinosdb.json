@@ -5,7 +5,7 @@
       "name": "Iguanodón",
       "image": "assets/images/dinos/3.png",
       "description": "Regalo de reyes de mamá",
-      "date_updated": "2023-04-17T11:36:59.545Z"
+      "date_updated": "2023-05-01T17:14:07.856Z"
     },
     {
       "id": 23,
@@ -60,6 +60,14 @@
       "description": "456",
       "date_updated": "2023-05-01T08:23:58.220Z",
       "date_created": "2023-05-01T08:23:58.220Z"
+    },
+    {
+      "id": 31,
+      "name": "ewrewr",
+      "image": "assets/images/dinos/2.png",
+      "description": "ewrerw",
+      "date_updated": "2023-05-01T17:13:15.998Z",
+      "date_created": "2023-05-01T17:13:15.998Z"
     }
   ]
 }
