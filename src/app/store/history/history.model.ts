@@ -1,4 +1,4 @@
-import {Dino} from "../dino/dino.model";
+import {Dino} from "../dino/entities/dino.model";
 
 export interface History {
   description: string;

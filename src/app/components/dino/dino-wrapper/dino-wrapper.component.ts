@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {DinoActions} from "../../../store/dino/dino.actions";
-import {select, Store} from "@ngrx/store";
+import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
-import {Dino} from "../../../store/dino/dino.model";
-import {dinoFeature} from "../../../store/dino/dino.reducers";
-import {dinoAdapter} from "../../../store/dino/dino.state";
-import {dinoSelectors} from "../../../store/dino/dino.selectors";
-import {EntityState} from "@ngrx/entity";
+import {Dino} from "../../../store/dino/entities/dino.model";
+import {DinoDataService} from "../../../store/dino/entities-services/dino-data.service";
 
 @Component({
   selector: 'app-dino-wrapper',
@@ -16,12 +12,11 @@ export class DinoWrapperComponent implements OnInit {
 
   dinoCollection$: Observable<Dino[]>;
 
-  constructor(private store: Store) {
-    this.dinoCollection$ = this.store.pipe(select(dinoSelectors.selectAll));
+  constructor(private store: Store, private dinoDataService: DinoDataService) {
+    this.dinoCollection$ = this.dinoDataService.entities$
   }
 
   ngOnInit(): void {
-    this.store.dispatch(DinoActions.loadDinos());
+    this.dinoDataService.getAll()
   }
-
 }

@@ -1,102 +1,70 @@
 import {Injectable} from "@angular/core";
-import {DinoService} from "../../services/dino.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {catchError, exhaustMap, switchMap, tap} from "rxjs/operators";
-import {DinoActions} from "./dino.actions";
-import {Dino} from "./dino.model";
+import { switchMap, tap} from "rxjs/operators";
 import {HistoryActions} from "../history/history.actions";
-import {of} from "rxjs";
 import {NotificationActions} from "../notification/notification.actions";
+import {EntityAction, EntityOp, ofEntityOp, ofEntityType} from "@ngrx/data";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class DinoEffects {
 
-  constructor(
-    private actions$: Actions,
-    private dinoService: DinoService
-  ) { }
+  constructor(private actions$: Actions) {}
 
-  loadDinosEffects$ = createEffect(() => this.actions$.pipe(
-      ofType(DinoActions.loadDinos),
-      exhaustMap(() => {
-        return this.dinoService.getDinoCollection().pipe(
-          // FORMA 1
-          switchMap((dinosResponse: Dino[]) => {
-              return [
-                DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
-                HistoryActions.addHistoryItem({newHistoryItem: {
-                  description: "Dinos loaded successfully"
-                }}),
-                NotificationActions.showNotificationItem({
-                  notification: {
-                    message: "Dinos loaded successfully",
-                    type: "INFO"
-                  }
-                })
-              ];
-            },
-          ),
-          // FORMA 2
-/**          mergeMap((dinosResponse: Dino[]) => [
-            DinoActions.loadDinosSuccess({dinoCollection: dinosResponse}),
-            HistoryActions.addHistoryItem({newHistoryItem: {description: "Cargado listado de dinosaurios"}}),
-          ]),**/
-          catchError(error => of(error).pipe(
-            switchMap((error) => {
-                return [
-                  NotificationActions.showNotificationItem({
-                    notification: {
-                      message: error,
-                      type: "ERROR"
-                    }
-                  }),
-                  DinoActions.failureDino()
-                ];
-              }
-            )
-          ))
-        )
-      }),
-    )
-  );
+loadDinosEffects$ = createEffect(() => this.actions$.pipe(
+    ofType("[Dino] "+EntityOp.QUERY_ALL_SUCCESS),
+    // ofEntityOp([EntityOp.QUERY_ALL_SUCCESS]),
+    // ofEntityType("Dino"),
+    switchMap(() => {
+        return [
+          HistoryActions.addHistoryItem({newHistoryItem: {
+              description: "Dinos loaded successfully"
+          }}),
+          NotificationActions.showNotificationItem({
+            notification: {
+              message: "Dinos loaded successfully",
+              type: "INFO"
+            }
+          })
+        ];
+      },
+    ),
+));
+
+  loadDinosErrorEffects$ = createEffect(() => this.actions$.pipe(
+    ofType("[Dino] "+EntityOp.QUERY_ALL_ERROR, "[Dino] "+EntityOp.QUERY_LOAD_ERROR),
+    switchMap((error) => {
+        return [
+          NotificationActions.showNotificationItem({
+            notification: {
+              message: error.type,
+              type: "ERROR"
+            }
+          }),
+        ];
+      },
+    ),
+  ));
 
   getDinoByIdEffects$ = createEffect(() => this.actions$.pipe(
-      ofType(DinoActions.getDinoById),
-      exhaustMap(({dinoId}) => {
-        return this.dinoService.getDinoById(dinoId).pipe(
-          switchMap((dinoResponse: Dino) =>
-            [
-              DinoActions.getDinoByIdSuccess({dinoSelected: dinoResponse}),
-              HistoryActions.addHistoryItem({newHistoryItem: {
-                description: "Dino Selected",
-                dinoReference: dinoResponse.id
-              }}),
-              NotificationActions.showNotificationItem({
-                notification: {
-                  message: "Select the dinosaur",
-                  type: "INFO"
-                }
-              })
-            ],
-          ),
-          catchError(error => of(error).pipe(
-            switchMap((error) => {
-                return [
-                  NotificationActions.showNotificationItem({
-                    notification: {
-                      message: error,
-                      type: "ERROR"
-                    }
-                  })
-                ];
-              }
-            )
-          ))
-        )
-      }),
-    )
+    ofType("[Dino] "+EntityOp.QUERY_BY_KEY_SUCCESS),
+    switchMap(() =>
+        [
+          HistoryActions.addHistoryItem({newHistoryItem: {
+            description: "Dino Selected",
+            dinoReference: 3
+          }}),
+          NotificationActions.showNotificationItem({
+            notification: {
+              message: "Select the dinosaur",
+              type: "INFO"
+            }
+          })
+        ],
+      )
+    ),{dispatch: false}
   );
-
+  /**
   newDinoEffects$ = createEffect(() => this.actions$.pipe(
       ofType(DinoActions.createNewDino),
       exhaustMap(({newDino}) => {
@@ -207,6 +175,7 @@ export class DinoEffects {
       })
     )
   );
+**/
 
 
 }

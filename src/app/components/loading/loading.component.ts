@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
-import {dinoFeature} from "../../store/dino/dino.reducers";
+import {DinoDataService} from "../../store/dino/entities-services/dino-data.service";
 
 @Component({
   selector: 'app-loading',
@@ -12,7 +12,7 @@ export class LoadingComponent {
 
   loadingDino$: Observable<boolean>;
 
-  constructor(private store: Store) {
-    this.loadingDino$ = this.store.pipe(select(dinoFeature.selectLoadingDino));
+  constructor(private store: Store, private dinoDataService: DinoDataService) {
+    this.loadingDino$ = this.dinoDataService.loading$
   }
 }

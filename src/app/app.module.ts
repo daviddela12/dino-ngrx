@@ -11,7 +11,6 @@ import {HttpClientModule} from "@angular/common/http";
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DinoCardComponent } from './components/dino/dino-wrapper/dino-card/dino-card.component';
-import {DinoModule} from "./components/dino/dino.module";
 import { DinoWrapperComponent } from './components/dino/dino-wrapper/dino-wrapper.component';
 import { DinoDetailsComponent } from './components/dino/dino-details/dino-details.component';
 import {ReactiveFormsModule} from "@angular/forms";
@@ -22,6 +21,15 @@ import {NotificationModule} from "./components/notification/notification.module"
 import {HistoryModule} from "./components/history/history.module";
 import {metaReducers} from "./store";
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {DefaultDataServiceConfig, EntityDataModule} from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
+import {DinoEffects} from "./store/dino/dino.effects";
+
+const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  // Default url for services are /api
+  root: 'http://localhost:3000',
+  getDelay: 1000
+};
 
 @NgModule({
   declarations: [
@@ -40,15 +48,17 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DinoModule,
     HistoryModule,
     NotificationModule,
     StoreModule.forRoot({router: routerReducer}, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot(),
-    StoreRouterConnectingModule.forRoot()
+    EffectsModule.forRoot([DinoEffects]),
+    StoreRouterConnectingModule.forRoot(),
+    EntityDataModule.forRoot(entityConfig)
   ],
-  providers: [],
+  providers: [
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

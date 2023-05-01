@@ -1,5 +1,5 @@
 {
-  "dinoCollection": [
+  "dinos": [
     {
       "id": 22,
       "name": "Iguanodón",
@@ -13,13 +13,6 @@
       "image": "assets/images/dinos/2.png",
       "description": "pepin",
       "date_updated": "2023-04-21T15:33:45.445Z"
-    },
-    {
-      "id": 24,
-      "name": "fdasdf",
-      "image": "assets/images/dinos/5.png",
-      "description": "Ramiro",
-      "date_updated": "2023-04-22T06:31:38.295Z"
     },
     {
       "id": 25,
@@ -62,11 +55,11 @@
     },
     {
       "id": 30,
-      "name": "dfasdf",
-      "image": "assets/images/dinos/4.png",
-      "description": "werwer",
-      "date_updated": "2023-04-28T11:38:04.888Z",
-      "date_created": "2023-04-28T11:38:04.888Z"
+      "name": "456",
+      "image": "assets/images/dinos/3.png",
+      "description": "456",
+      "date_updated": "2023-05-01T08:23:58.220Z",
+      "date_created": "2023-05-01T08:23:58.220Z"
     }
   ]
 }

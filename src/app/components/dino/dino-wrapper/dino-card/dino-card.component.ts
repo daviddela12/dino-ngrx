@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {Dino} from "../../../../store/dino/dino.model";
+import {Dino} from "../../../../store/dino/entities/dino.model";
 import {Store} from "@ngrx/store";
-import {DinoActions} from "../../../../store/dino/dino.actions";
+import {DinoDataService} from "../../../../store/dino/entities-services/dino-data.service";
 
 @Component({
   selector: 'app-dino-card',
@@ -12,11 +12,11 @@ export class DinoCardComponent {
 
   @Input() dino: Dino;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private dinoDataService: DinoDataService) { }
 
   deleteDino(dinoId: number) {
     if(confirm("Are you sure to delete this dinosaur from your collection?")) {
-      this.store.dispatch(DinoActions.deleteDino({deletedDinoId: dinoId}));
+      this.dinoDataService.delete(dinoId)
     }
   }
 

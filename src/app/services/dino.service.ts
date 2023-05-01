@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {delay, map, Observable, throwError} from "rxjs";
-import {Dino} from "../store/dino/dino.model";
+import {Dino} from "../store/dino/entities/dino.model";
 
 @Injectable({
   providedIn: 'root'

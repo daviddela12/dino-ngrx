@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
-import {DinoActions} from "../../../store/dino/dino.actions";
-import {Dino} from "../../../store/dino/dino.model";
+import {Dino} from "../../../store/dino/entities/dino.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {dinoFeature} from "../../../store/dino/dino.reducers";
-import {dinoSelectors} from "../../../store/dino/dino.selectors";
+import {DinoDataService} from "../../../store/dino/entities-services/dino-data.service";
+import {selectCurrentRoute, selectRouteParam, selectRouteParams} from "../../../store/router.selectors";
 
 @Component({
   selector: 'app-dino-details',
@@ -18,23 +17,27 @@ export class DinoDetailsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private store: Store,
+              private dinoDataService: DinoDataService,
               private activateRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+    this.dinoId = this.activateRoute.snapshot.params["dinoId"]
+  }
 
   ngOnInit(): void {
     this.buildForm();
-    this.store.pipe(
-      select(dinoSelectors.selectDinoById)
-    ).subscribe((dinoResponse: Dino) => {
-        if (dinoResponse) {
-          this.dino = dinoResponse;
-          this.dinoForm.setValue({
-            id: dinoResponse.id,
-            name: dinoResponse.name,
-            description: dinoResponse.description
-          })
-        }
-    })
+    if(this.dinoId) {
+      this.dinoDataService.getByKey(this.dinoId)
+        .subscribe((dinoResponse: Dino) => {
+          if (dinoResponse) {
+            this.dino = dinoResponse;
+            this.dinoForm.setValue({
+              id: dinoResponse.id,
+              name: dinoResponse.name,
+              description: dinoResponse.description
+            })
+          }
+        })
+    }
   }
 
   onSubmit() {
@@ -50,10 +53,10 @@ export class DinoDetailsComponent implements OnInit {
     }
     if (!this.dinoId) {
       newDino.date_created = new Date()
-      this.store.dispatch(DinoActions.createNewDino({newDino}));
+      this.dinoDataService.add(newDino)
     } else {
       newDino.image = this.dino.image;
-      this.store.dispatch(DinoActions.updateDino({updatedDino: newDino}));
+      this.dinoDataService.update(newDino)
     }
     this.router.navigate(["/"]);
   }
