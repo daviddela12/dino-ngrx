@@ -1,4 +1,4 @@
-import { getSelectors, RouterReducerState } from '@ngrx/router-store';
+import { getRouterSelectors, RouterReducerState } from '@ngrx/router-store';
 import {createFeatureSelector} from "@ngrx/store";
 
 // `router` is used as the default feature name. You can use the feature name
