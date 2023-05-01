@@ -19,7 +19,6 @@ import { NotificationComponent } from './components/notification/notification.co
 import { FooterComponent } from './components/footer/footer.component';
 import {NotificationModule} from "./components/notification/notification.module";
 import {HistoryModule} from "./components/history/history.module";
-import {metaReducers} from "./store";
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {DefaultDataServiceConfig, EntityDataModule} from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
@@ -50,7 +49,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     ReactiveFormsModule,
     HistoryModule,
     NotificationModule,
-    StoreModule.forRoot({router: routerReducer}, {metaReducers}),
+    StoreModule.forRoot({router: routerReducer}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([DinoEffects]),
     StoreRouterConnectingModule.forRoot(),
