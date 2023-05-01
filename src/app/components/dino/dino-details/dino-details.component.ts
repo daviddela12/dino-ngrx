@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
 import {Dino} from "../../../store/dino/entities/dino.model";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -11,11 +11,11 @@ import {selectCurrentRoute, selectRouteParam, selectRouteParams} from "../../../
   templateUrl: './dino-details.component.html'
 })
 export class DinoDetailsComponent implements OnInit {
-  dinoForm: FormGroup;
+  dinoForm: UntypedFormGroup;
   dinoId: number;
   dino: Dino;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private store: Store,
               private dinoDataService: DinoDataService,
               private activateRoute: ActivatedRoute,
