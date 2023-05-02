@@ -23,7 +23,7 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {DefaultDataServiceConfig, EntityDataModule} from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import {DinoEffects} from "./store/dino/dino.effects";
-import {metaReducers} from "./store";
+import {NgrxStoreIdbModule} from "ngrx-store-idb";
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   // Default url for services are /api
@@ -50,11 +50,12 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     ReactiveFormsModule,
     HistoryModule,
     NotificationModule,
-    StoreModule.forRoot({router: routerReducer}, {metaReducers}),
+    StoreModule.forRoot({router: routerReducer}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([DinoEffects]),
     StoreRouterConnectingModule.forRoot(),
-    EntityDataModule.forRoot(entityConfig)
+    EntityDataModule.forRoot(entityConfig),
+    NgrxStoreIdbModule.forRoot()
   ],
   providers: [
     { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
