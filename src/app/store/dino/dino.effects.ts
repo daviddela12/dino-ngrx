@@ -3,33 +3,30 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import { switchMap, tap} from "rxjs/operators";
 import {HistoryActions} from "../history/history.actions";
 import {NotificationActions} from "../notification/notification.actions";
-import {EntityAction, EntityOp, ofEntityOp, ofEntityType} from "@ngrx/data";
-import {Observable} from "rxjs";
+import {EntityOp, ofEntityOp, ofEntityType} from "@ngrx/data";
 
 @Injectable()
 export class DinoEffects {
 
   constructor(private actions$: Actions) {}
 
-loadDinosEffects$ = createEffect(() => this.actions$.pipe(
-    ofType("[Dino] "+EntityOp.QUERY_ALL_SUCCESS),
-    // ofEntityOp([EntityOp.QUERY_ALL_SUCCESS]),
-    // ofEntityType("Dino"),
-    switchMap(() => {
-        return [
-          HistoryActions.addHistoryItem({newHistoryItem: {
-              description: "Dinos loaded successfully"
-          }}),
-          NotificationActions.showNotificationItem({
-            notification: {
-              message: "Dinos loaded successfully",
-              type: "INFO"
-            }
-          })
-        ];
-      },
-    ),
-));
+  loadDinosEffects$ = createEffect(() => this.actions$.pipe(
+      ofType("[Dino] "+EntityOp.QUERY_ALL_SUCCESS),
+      switchMap((action) => {
+          return [
+            HistoryActions.addHistoryItem({newHistoryItem: {
+                description: "Dinos loaded successfully",
+            }}),
+            NotificationActions.showNotificationItem({
+              notification: {
+                message: "Dinos loaded successfully",
+                type: "INFO"
+              }
+            })
+          ];
+        },
+      ),
+  ));
 
   loadDinosErrorEffects$ = createEffect(() => this.actions$.pipe(
     ofType("[Dino] "+EntityOp.QUERY_ALL_ERROR, "[Dino] "+EntityOp.QUERY_LOAD_ERROR),
@@ -47,13 +44,13 @@ loadDinosEffects$ = createEffect(() => this.actions$.pipe(
   ));
 
   getDinoByIdEffects$ = createEffect(() => this.actions$.pipe(
-    ofType("[Dino] "+EntityOp.QUERY_BY_KEY_SUCCESS),
-    // ofEntityType("Dino"),
-    // ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
-    switchMap(() =>
+    ofEntityType("Dino"),
+    ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
+    switchMap((action) =>
         [
           HistoryActions.addHistoryItem({newHistoryItem: {
             description: "Dino Selected",
+            dinoReference: action.payload.data.id
           }}),
           NotificationActions.showNotificationItem({
             notification: {
@@ -67,13 +64,13 @@ loadDinosEffects$ = createEffect(() => this.actions$.pipe(
   );
 
   newDinoEffects$ = createEffect(() => this.actions$.pipe(
-      ofType("[Dino] "+EntityOp.SAVE_ADD_ONE_SUCCESS),
-      // ofEntityType("Dino"),
-      // ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
-      switchMap(() =>
+      ofEntityType("Dino"),
+      ofEntityOp([EntityOp.SAVE_ADD_ONE_SUCCESS]),
+      switchMap((action) =>
         [
           HistoryActions.addHistoryItem({newHistoryItem: {
               description: "Added dinosaur to your collection",
+              dinoReference: action.payload.data.id
             }}),
           NotificationActions.showNotificationItem({
             notification: {
@@ -87,13 +84,13 @@ loadDinosEffects$ = createEffect(() => this.actions$.pipe(
   );
 
   updateDinoEffects$ = createEffect(() => this.actions$.pipe(
-      ofType("[Dino] "+EntityOp.SAVE_UPDATE_ONE_SUCCESS),
-      // ofEntityType("Dino"),
-      // ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
-      switchMap(() =>
+      ofEntityType("Dino"),
+      ofEntityOp([EntityOp.SAVE_UPDATE_ONE_SUCCESS]),
+      switchMap((action) =>
         [
           HistoryActions.addHistoryItem({newHistoryItem: {
               description: "Updated dinosaur",
+              dinoReference: action.payload.data.id
             }}),
           NotificationActions.showNotificationItem({
             notification: {
@@ -107,13 +104,13 @@ loadDinosEffects$ = createEffect(() => this.actions$.pipe(
   );
 
   deleteDinoEffects$ = createEffect(() => this.actions$.pipe(
-      ofType("[Dino] "+EntityOp.SAVE_DELETE_ONE_SUCCESS),
-      // ofEntityType("Dino"),
-      // ofEntityOp([EntityOp.QUERY_BY_KEY_SUCCESS]),
-      switchMap(() =>
+      ofEntityType("Dino"),
+      ofEntityOp([EntityOp.SAVE_DELETE_ONE_SUCCESS]),
+      switchMap((action) =>
         [
           HistoryActions.addHistoryItem({newHistoryItem: {
               description: "Deleted dinosaur from your collection",
+              dinoReference: action.payload.data.id
             }}),
           NotificationActions.showNotificationItem({
             notification: {
