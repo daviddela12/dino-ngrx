@@ -112,5 +112,8 @@
       }
     }
   },
-  "defaultProject": "dino-ngrx"
+  "defaultProject": "dino-ngrx",
+  "cli": {
+    "analytics": false
+  }
 }

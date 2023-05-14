@@ -39,7 +39,7 @@ export const dinoFeature = createFeature({
       dinoCollection: state.dinoCollection.map(
         // MUTABLE OPERATION dino => dino.id === updatedDino.id ? { name: updatedDino.name, description: updatedDino.description }: dino),
         dino => dino.id === updatedDino.id ? {...dino, ...updatedDino} : dino),
-      // ANOTHER WAY TO UPDATE DINO Object.assign({}, updatedDino)
+      // ANOTHER WAY TO UPDATE DINO dino => dino.id === updatedDino.id ? Object.assign({}, updatedDino) : dino)
       loadingDino: false
     })),
 
