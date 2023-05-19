@@ -1,18 +1,108 @@
 {
   "dinoCollection": [
     {
-      "id": 22,
-      "name": "Iguanodón",
-      "image": "assets/images/dinos/3.png",
-      "description": "Regalo de reyes de mamá",
-      "date_updated": "2023-04-17T11:36:59.545Z"
+      "id": 1,
+      "name": "Iguanodon",
+      "image": "assets/images/dinos/1.png",
+      "description": "Christmas present 2022",
+      "date_updated": "2023-05-19T13:38:24.510Z",
+      "date_created": "2023-05-19T13:38:24.510Z"
     },
     {
-      "id": 23,
-      "name": "Velociraptor",
+      "id": 2,
+      "name": "Ankylosaurus",
       "image": "assets/images/dinos/2.png",
-      "description": "dfasdf",
-      "date_updated": "2023-04-30T08:39:50.648Z"
+      "description": "Birthday 2021",
+      "date_updated": "2023-05-19T13:38:59.946Z",
+      "date_created": "2023-05-19T13:38:59.946Z"
+    },
+    {
+      "id": 3,
+      "name": "Parasaurolophus",
+      "image": "assets/images/dinos/1.png",
+      "description": "Bought in June 2021",
+      "date_updated": "2023-05-19T13:39:41.424Z",
+      "date_created": "2023-05-19T13:39:41.424Z"
+    },
+    {
+      "id": 4,
+      "name": "T-Rex",
+      "image": "assets/images/dinos/3.png",
+      "description": "Christmas 2020",
+      "date_updated": "2023-05-19T13:40:14.433Z",
+      "date_created": "2023-05-19T13:40:14.433Z"
+    },
+    {
+      "id": 5,
+      "name": "Tricerator",
+      "image": "assets/images/dinos/1.png",
+      "description": "Personal gift April 2019",
+      "date_updated": "2023-05-19T13:41:34.240Z",
+      "date_created": "2023-05-19T13:41:34.240Z"
+    },
+    {
+      "id": 6,
+      "name": "Dino A",
+      "image": "assets/images/dinos/5.png",
+      "description": "-",
+      "date_updated": "2023-05-19T12:42:12.625Z",
+      "date_created": "2023-05-19T12:42:12.625Z"
+    },
+    {
+      "id": 7,
+      "name": "Dino B",
+      "image": "assets/images/dinos/5.png",
+      "description": "-",
+      "date_updated": "2023-05-19T12:42:23.977Z",
+      "date_created": "2023-05-19T12:42:23.977Z"
+    },
+    {
+      "id": 8,
+      "name": "Dino C",
+      "image": "assets/images/dinos/2.png",
+      "description": "-",
+      "date_updated": "2023-05-19T12:42:32.291Z",
+      "date_created": "2023-05-19T12:42:32.291Z"
+    },
+    {
+      "id": 9,
+      "name": "Dino D",
+      "image": "assets/images/dinos/5.png",
+      "description": "-",
+      "date_updated": "2023-05-19T12:42:40.155Z",
+      "date_created": "2023-05-19T12:42:40.155Z"
+    },
+    {
+      "id": 10,
+      "name": "Dino E",
+      "image": "assets/images/dinos/2.png",
+      "description": "-",
+      "date_updated": "2023-05-19T12:42:47.635Z",
+      "date_created": "2023-05-19T12:42:47.635Z"
+    },
+    {
+      "id": 11,
+      "name": "Dino F",
+      "image": "assets/images/dinos/3.png",
+      "description": "-",
+      "date_updated": "2023-05-19T12:42:56.636Z",
+      "date_created": "2023-05-19T12:42:56.636Z"
+    },
+    {
+      "id": 12,
+      "name": "Dino G",
+      "image": "assets/images/dinos/1.png",
+      "description": "-",
+      "date_updated": "2023-05-19T12:43:08.652Z",
+      "date_created": "2023-05-19T12:43:08.652Z"
+    },
+    {
+      "id": 13,
+      "name": "Dino H",
+      "image": "assets/images/dinos/2.png",
+      "description": "-",
+      "date_updated": "2023-05-19T12:43:18.529Z",
+      "date_created": "2023-05-19T12:43:18.529Z"
     }
   ]
 }
