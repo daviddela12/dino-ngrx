@@ -1,3 +1,12 @@
+.navbar-brand {
+  a {
+    padding-bottom: 0;
+    padding-top: 0;
+    img {
+      max-height: 50px;
+    }
+  }
+}
 .navbar-notification {
   padding-right: 25px;
   position: absolute;
