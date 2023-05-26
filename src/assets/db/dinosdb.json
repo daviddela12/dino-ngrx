@@ -19,7 +19,7 @@
     {
       "id": 3,
       "name": "Parasaurolophus",
-      "image": "assets/images/dinos/1.png",
+      "image": "assets/images/dinos/3.png",
       "description": "Bought in June 2021",
       "date_updated": "2023-05-19T13:39:41.424Z",
       "date_created": "2023-05-19T13:39:41.424Z"
@@ -27,7 +27,7 @@
     {
       "id": 4,
       "name": "T-Rex",
-      "image": "assets/images/dinos/3.png",
+      "image": "assets/images/dinos/4.png",
       "description": "Christmas 2020",
       "date_updated": "2023-05-19T13:40:14.433Z",
       "date_created": "2023-05-19T13:40:14.433Z"
@@ -35,7 +35,7 @@
     {
       "id": 5,
       "name": "Tricerator",
-      "image": "assets/images/dinos/1.png",
+      "image": "assets/images/dinos/5.png",
       "description": "Personal gift April 2019",
       "date_updated": "2023-05-19T13:41:34.240Z",
       "date_created": "2023-05-19T13:41:34.240Z"
@@ -43,7 +43,7 @@
     {
       "id": 6,
       "name": "Dino A",
-      "image": "assets/images/dinos/5.png",
+      "image": "assets/images/dinos/2.png",
       "description": "-",
       "date_updated": "2023-05-19T12:42:12.625Z",
       "date_created": "2023-05-19T12:42:12.625Z"
@@ -51,7 +51,7 @@
     {
       "id": 7,
       "name": "Dino B",
-      "image": "assets/images/dinos/5.png",
+      "image": "assets/images/dinos/3.png",
       "description": "-",
       "date_updated": "2023-05-19T12:42:23.977Z",
       "date_created": "2023-05-19T12:42:23.977Z"
@@ -59,7 +59,7 @@
     {
       "id": 8,
       "name": "Dino C",
-      "image": "assets/images/dinos/2.png",
+      "image": "assets/images/dinos/1.png",
       "description": "-",
       "date_updated": "2023-05-19T12:42:32.291Z",
       "date_created": "2023-05-19T12:42:32.291Z"
@@ -67,7 +67,7 @@
     {
       "id": 9,
       "name": "Dino D",
-      "image": "assets/images/dinos/5.png",
+      "image": "assets/images/dinos/2.png",
       "description": "-",
       "date_updated": "2023-05-19T12:42:40.155Z",
       "date_created": "2023-05-19T12:42:40.155Z"
@@ -75,7 +75,7 @@
     {
       "id": 10,
       "name": "Dino E",
-      "image": "assets/images/dinos/2.png",
+      "image": "assets/images/dinos/5.png",
       "description": "-",
       "date_updated": "2023-05-19T12:42:47.635Z",
       "date_created": "2023-05-19T12:42:47.635Z"
